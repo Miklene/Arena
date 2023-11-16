@@ -12,6 +12,18 @@ class Fighter(Entity):
   def stats(self):
     return self._stats
     
+  @property
+  def race(self):
+    return self._race
+    
+  @property
+  def name(self):
+    return self._name
+   
+  @name.setter
+  def name(self, name):
+    self._name = name
+    
   def getDescription(self):
     description = self._race
     description += self._stats.getDescription()

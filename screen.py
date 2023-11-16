@@ -15,8 +15,6 @@ class NewGameScreen(Screen):
     super().__init__()
   
   def start(self, output, inp):
-    name = inp.read("Введите свое имя: ")
-    output.out(f"Добро пожаловать на арену, {name}")
     while True:
       race = inp.read("В игре есть три расы: орк, человек, эльф. Введите:\n1 - орк\n2 - человек\n3 - эльф\n")
       if race == "1":
@@ -37,3 +35,6 @@ class NewGameScreen(Screen):
         if accept == "1":
           self.player = Elf()
           break
+    name = inp.read("Введите свое имя: ")
+    self.player.name = name
+    output.out(f"Добро пожаловать на арену, {self.player.race} {self.player.name}")
