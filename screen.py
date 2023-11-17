@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from fighter import Orc, Elf, Human
 from output import ConsoleOutputComponent
-from message import DescriptionMessage
+from message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
+from message_code import MessageCode
+from contextlib import suppress
 
 class Screen(ABC):
   def __init__(self, game):
@@ -43,6 +45,7 @@ class NewGameScreen(Screen):
     player.name = name
     self._game.player = player
     output.out(f"Добро пожаловать на арену, {player.race} {player.name}")
+    self._game.player.send(LevelUpMessage(None))
     MainMenuScreen(self._game).start(output, inp)
 
 
@@ -53,7 +56,7 @@ class MainMenuScreen(Screen):
   def start(self, output, inp):
     while True:
       output.out("\nГлавное меню")
-      #output.out(f"У вас {str(self._game.player.money)} монет и {str(self._game.player.points)} нераспределенных очков умений")
+      self._game.player.send(Message(MessageCode.SHOW_POINTS))
       choiсe = inp.read("1 - меню персонажа\n2 - меню магазина\n3 - меню боя\n")
       if choiсe == "1":
         CharacterMenuScreen(self._game).start(output, inp)
@@ -69,14 +72,38 @@ class CharacterMenuScreen(Screen):
   def start(self, output, inp):
     while True:
       output.out("\nМеню персонажа")
-      #output.out(f"У вас {str(self.player.points)} нераспределенных очков умений")
+      self._game.player.send(Message(MessageCode.SHOW_POINTS))
       choiсe = inp.read("1 - характеристики персонажа\n2 - распределить очки умений\n3 - инвентарь\n0 - назад\n")
       if choiсe == "1":
         output.out("")
         self._game.player.send(DescriptionMessage(output))
-      #elif choiсe == "2":
-      #  self.pointsMenu()
+      elif choiсe == "2":
+        PointsMenuScreen(self._game).start(output, inp)
       #elif choiсe == "3":
       #  self.player.inventoryMenu()
       elif choiсe == "0":
         break
+
+class PointsMenuScreen(Screen):
+  def __init__(self, game):
+    super().__init__(game)
+  
+  def start(self, output, inp):
+    while True:
+      output.out("\nМеню очков умений")
+      self._game.player.send(Message(MessageCode.SHOW_POINTS))
+      choiсe = inp.read("1 - увеличить телосложение\n2 - увеличить силу\n3 - увеличить ловкость\n4 - подсказка по очкам умений\n0 - назад\n")
+      with suppress(ValueError):
+        if choiсe == "1":
+          points = int(input("Телосложение, введите количество очков:"))
+          self._game.player.send(UpgradeStatsMessage({"physique" : points}))
+        if choiсe == "2":
+          points = int(input("Сила, введите количество очков:"))
+          self._game.player.send(UpgradeStatsMessage({"strength" : points}))
+        if choiсe == "3":
+          points = int(input("Ловкость, введите количество очков:"))
+          self._game.player.send(UpgradeStatsMessage({"agility" : points}))
+        if choiсe == "4":
+          self._game.player.send(Message(MessageCode.SHOW_PARAMETERS_PER_STATS))
+        if choiсe == "0":
+          break

@@ -1,7 +1,8 @@
+from components.level_component import LevelComponent
 from entity import Entity
-from stats_component import FighterStatsComponent
-from parameters_component import FighterParametersComponent
-from equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
+from components.stats_component import FighterStatsComponent
+from components.parameters_component import FighterParametersComponent
+from components.equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
 
 class Fighter(Entity):
   
@@ -46,6 +47,7 @@ class Orc(Fighter):
     super().__init__()
     self._race = "Орк"
     stats = FighterStatsComponent(10,9,6)
+    self.addComponent(LevelComponent(stats, 20, 2))
     self.addComponent(stats)
     self.addComponent(FighterParametersComponent(stats))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
@@ -57,6 +59,7 @@ class Human(Fighter):
     super().__init__()
     self._race = "Человек"
     stats = FighterStatsComponent(9,9,7)
+    self.addComponent(LevelComponent(stats, 20, 2))
     self.addComponent(stats)
     self.addComponent(FighterParametersComponent(stats))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
@@ -68,6 +71,7 @@ class Elf(Fighter):
     super().__init__()
     self._race = "Эльф"
     stats = FighterStatsComponent(8,8,9)
+    self.addComponent(LevelComponent(stats, 20, 2))
     self.addComponent(stats)
     self.addComponent(FighterParametersComponent(stats))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))

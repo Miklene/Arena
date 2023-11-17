@@ -1,4 +1,4 @@
-from component import Component
+from components.component import Component
 from message_code import MessageCode
 
 class EquipmentSlot(Component):

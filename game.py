@@ -2,7 +2,7 @@ from equipment import Equipment, Weapon, Armor
 from fighter import Fighter
 from output import ConsoleOutputComponent
 from stats_requirements import WeaponStatsRequirmentsComponent, ArmorStatsRequirmentsComponent
-from stats_component import FighterStatsComponent
+from components.stats_component import FighterStatsComponent
 from screen import NewGameScreen
 from input_component import ConsoleInputComponent
 
@@ -17,10 +17,14 @@ class Game:
         if not hasattr(cls, 'instance'):
             cls.instance = super(Game, cls).__new__(cls)
         return cls.instance
-        
+
   @property
   def player(self):
     return self._player
+
+  @property
+  def output(self):
+    return self._output
 
   @player.setter
   def player(self, player):

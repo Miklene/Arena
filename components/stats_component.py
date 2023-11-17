@@ -1,7 +1,9 @@
 from abc import abstractmethod
 
-from component import Component
+from components.component import Component
+from message import UpdateParameterspMessage
 from message_code import MessageCode
+from service_objects import ServiceObjects
 
 
 class StatsComponent(Component):
@@ -30,6 +32,18 @@ class FighterStatsComponent(StatsComponent):
     description += "\nЛовкость: " + str(self._agility)
     return description
     
+  def increasePhysique(self, value):
+    self._physique += value
+    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+
+  def increaseStrength(self, value):
+    self._strength += value
+    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+
+  def increaseAgility(self, value):
+    self._agility += value 
+    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+
   @property
   def physique(self):
     return self._physique
