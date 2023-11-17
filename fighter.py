@@ -17,15 +17,7 @@ class Fighter(Entity):
   @property
   def race(self):
     return self._race
-    
-  @property
-  def name(self):
-    return self._name
-   
-  @name.setter
-  def name(self, name):
-    self._name = name
-  
+     
 
 class Orc(Fighter):
   def __init__(self):
