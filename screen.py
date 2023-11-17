@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from components.name_component import NameComponent
 from fighter import Orc, Elf, Human
 from output import ConsoleOutputComponent
 from message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
@@ -42,8 +43,9 @@ class NewGameScreen(Screen):
           player = Elf()
           break
     name = inp.read("Введите свое имя: ")
-    player.name = name
+    #player.name = name
     self._game.player = player
+    self._game.player.addComponent(NameComponent("name"))
     output.out(f"Добро пожаловать на арену, {player.race} {player.name}")
     self._game.player.send(LevelUpMessage(None))
     MainMenuScreen(self._game).start(output, inp)

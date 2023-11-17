@@ -1,4 +1,5 @@
 from components.level_component import LevelComponent
+from components.name_component import NameComponent
 from entity import Entity
 from components.stats_component import FighterStatsComponent
 from components.parameters_component import FighterParametersComponent
@@ -7,20 +8,12 @@ from components.equipment_slot_component import ArmorEquipmentSlot, WeaponEquipm
 class Fighter(Entity):
   
   def __init__(self):
-    self._components = []
-    self._name = ""
+    super().__init__()
     self._race = "No race"
     #self._stats = stats
     #self._parameters = FighterParametersComponent(self._stats)
     #self._equipment_slots = []
 
-  def addComponent(self, component):
-    self._components.append(component)
-
-  def send(self, message):
-    for component in self._components:
-      component.recieve(message)
-    
   @property
   def race(self):
     return self._race
@@ -33,14 +26,6 @@ class Fighter(Entity):
   def name(self, name):
     self._name = name
   
-  #def getDescription(self):
-  #  description = self._race
-  #  description += self._stats.getDescription()
-  #  description += self._parameters.getDescription()
-  #  for equimpent_slot in self._equipment_slots:
-  #    description += equimpent_slot.getDescription()
-  # return description
-
 
 class Orc(Fighter):
   def __init__(self):
