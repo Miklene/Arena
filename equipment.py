@@ -11,9 +11,13 @@ class Equipment(Entity):
   def equip(self, entity, output):
     pass
 
+  @property
+  def name(self):
+    return self._name
+
 
 class Weapon(Equipment):
-  def __init__(self,name, price, stats_requirements):
+  def __init__(self, name, price, stats_requirements):
     super().__init__(name, price, stats_requirements)
 
   def equip(self, entity, output):
@@ -22,7 +26,7 @@ class Weapon(Equipment):
       
 
 class Armor(Equipment):
-  def __init__(self,name, price, stats_requirements):
+  def __init__(self, name, price, stats_requirements):
     super().__init__(name, price, stats_requirements)
 
   def equip(self, entity, output):

@@ -1,16 +1,24 @@
 from entity import Entity
-from stats import FighterStatsComponent
+from stats_component import FighterStatsComponent
+from parameters_component import FighterParametersComponent
+from equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
 
 class Fighter(Entity):
   
   def __init__(self):
+    self._components = []
     self._name = ""
     self._race = "No race"
-    self._stats = FighterStatsComponent(5,5,5)
+    #self._stats = stats
+    #self._parameters = FighterParametersComponent(self._stats)
+    #self._equipment_slots = []
 
-  @property
-  def stats(self):
-    return self._stats
+  def addComponent(self, component):
+    self._components.append(component)
+
+  def send(self, message):
+    for component in self._components:
+      component.recieve(message)
     
   @property
   def race(self):
@@ -23,28 +31,45 @@ class Fighter(Entity):
   @name.setter
   def name(self, name):
     self._name = name
-    
-  def getDescription(self):
-    description = self._race
-    description += self._stats.getDescription()
-    return description
-    
-#class Inventory:
   
+  #def getDescription(self):
+  #  description = self._race
+  #  description += self._stats.getDescription()
+  #  description += self._parameters.getDescription()
+  #  for equimpent_slot in self._equipment_slots:
+  #    description += equimpent_slot.getDescription()
+  # return description
+
+
 class Orc(Fighter):
   def __init__(self):
     super().__init__()
     self._race = "Орк"
-    self._stats = FighterStatsComponent(10,9,6)
+    stats = FighterStatsComponent(10,9,6)
+    self.addComponent(stats)
+    self.addComponent(FighterParametersComponent(stats))
+    self.addComponent(WeaponEquipmentSlot("Правая рука", None))
+    self.addComponent(ArmorEquipmentSlot("Тело", None))
  
+
 class Human(Fighter):
   def __init__(self):
     super().__init__()
     self._race = "Человек"
-    self._stats = FighterStatsComponent(9,9,7)
-    
+    stats = FighterStatsComponent(9,9,7)
+    self.addComponent(stats)
+    self.addComponent(FighterParametersComponent(stats))
+    self.addComponent(WeaponEquipmentSlot("Правая рука", None))
+    self.addComponent(ArmorEquipmentSlot("Тело", None))
+
+
 class Elf(Fighter):
   def __init__(self):
     super().__init__()
     self._race = "Эльф"
-    self._stats = FighterStatsComponent(8,8,9)
+    stats = FighterStatsComponent(8,8,9)
+    self.addComponent(stats)
+    self.addComponent(FighterParametersComponent(stats))
+    self.addComponent(WeaponEquipmentSlot("Правая рука", None))
+    self.addComponent(ArmorEquipmentSlot("Тело", None))
+    

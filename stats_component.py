@@ -1,7 +1,10 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+
+from component import Component
+from message_code import MessageCode
 
 
-class StatsComponent(ABC):
+class StatsComponent(Component):
   def __init__(self):
     pass
     
@@ -9,6 +12,9 @@ class StatsComponent(ABC):
   def getDescription(self):
     pass
 
+  def recieve(self, message):
+    if message.code == MessageCode.SHOW_DESCRIPTION:
+      message.object.out(self.getDescription())
 
 class FighterStatsComponent(StatsComponent):
   
@@ -19,7 +25,7 @@ class FighterStatsComponent(StatsComponent):
     self._agility = agility
 
   def getDescription(self):
-    description = "\nТелосложение: " + str(self._physique)
+    description = "Телосложение: " + str(self._physique)
     description += "\nСила: " + str(self._strength)
     description += "\nЛовкость: " + str(self._agility)
     return description
@@ -35,7 +41,8 @@ class FighterStatsComponent(StatsComponent):
   @property
   def agility(self):
     return self._agility
-    
+
+
 class WeaponStatsComponent(StatsComponent):
   
   def __init__(self, damage):
@@ -49,6 +56,7 @@ class WeaponStatsComponent(StatsComponent):
   @property
   def damage(self):
     return self._damage
+
 
 class ArmorStatsComponent(StatsComponent):
   def __init__(self, armor):
