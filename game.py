@@ -1,5 +1,5 @@
 from equipment import Equipment, Weapon, Armor
-from fighter import Fighter
+from creature import Creature
 from output import ConsoleOutputComponent
 from stats_requirements import WeaponStatsRequirmentsComponent, ArmorStatsRequirmentsComponent
 from components.stats_component import FighterStatsComponent

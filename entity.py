@@ -1,6 +1,7 @@
 class Entity:
   def __init__(self):
     self._components = []
+    self._name = ""
   
   def addComponent(self, component):
     self._components.append(component)

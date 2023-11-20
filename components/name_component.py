@@ -6,5 +6,7 @@ class NameComponent(Component):
     self._name = name
   
   def recieve(self, message):
+    if not isinstance(self, message.recipient):
+      return
     if message == MessageCode.SHOW_DESCRIPTION:
       message.object.out(self._name)

@@ -3,9 +3,10 @@ from output import ConsoleOutputComponent
 
 
 class Message:
-  def __init__(self, code):
+  def __init__(self, code, recipient = object):
     self._code = code
     self._object = None
+    self._recipient = recipient
 
   @property
   def code(self):
@@ -15,22 +16,27 @@ class Message:
   def object(self):
     return self._object
 
+  @property
+  def recipient(self):
+    return self._recipient
+
+
 class DescriptionMessage(Message):
-  def __init__(self, output):
-    super().__init__(MessageCode.SHOW_DESCRIPTION)
+  def __init__(self, output, recipient = object):
+    super().__init__(MessageCode.SHOW_DESCRIPTION, recipient)
     self._object = output
 
 class UpgradeStatsMessage(Message):
-  def __init__(self, output):
-    super().__init__(MessageCode.UPGRADE_STATS)
+  def __init__(self, output, recipient = object):
+    super().__init__(MessageCode.UPGRADE_STATS, recipient)
     self._object = output
 
 class LevelUpMessage(Message):
-  def __init__(self, output):
-    super().__init__(MessageCode.LEVEL_UP)
+  def __init__(self, output, recipient = object):
+    super().__init__(MessageCode.LEVEL_UP, recipient)
     self._object = output
 
 class UpdateParameterspMessage(Message):
-  def __init__(self, output):
-    super().__init__(MessageCode.UPDATE_PARAMETERS)
+  def __init__(self, output, recipient = object):
+    super().__init__(MessageCode.UPDATE_PARAMETERS, recipient)
     self._object = output

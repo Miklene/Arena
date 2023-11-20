@@ -1,10 +1,14 @@
 from abc import ABC, abstractmethod
 from components.name_component import NameComponent
-from fighter import Orc, Elf, Human
+from creature import Orc, Elf, Human
 from output import ConsoleOutputComponent
 from message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
 from message_code import MessageCode
 from contextlib import suppress
+from components.level_component import LevelComponent
+from components.stats_component import StatsComponent
+from components.parameters_component import ParametersComponent
+from components.equipment_slot_component import EquipmentSlot
 
 class Screen(ABC):
   def __init__(self, game):
@@ -19,25 +23,26 @@ class NewGameScreen(Screen):
     super().__init__(game)
   
   def start(self, output, inp):
+    self._output = output
     while True:
       race = inp.read("В игре есть три расы: орк, человек, эльф. Введите:\n1 - орк\n2 - человек\n3 - эльф\n")
       if race == "1":
         output.out("")
-        Orc().send(DescriptionMessage(output))
+        self.showDescriptionForStartMenu(Orc())
         accept = inp.read("1 - выбрать\n0 - назад\n")
         if accept == "1":
           player = Orc()
           break
       elif race == "2":
         output.out("")
-        Human().send(DescriptionMessage(output))
+        self.showDescriptionForStartMenu(Human())
         accept = inp.read("1 - выбрать\n0 - назад\n")
         if accept == "1":
           player = Human()
           break
       elif race == "3":
         output.out("")
-        Elf().send(DescriptionMessage(output))
+        self.showDescriptionForStartMenu(Elf())
         accept = inp.read("1 - выбрать\n0 - назад\n")
         if accept == "1":
           player = Elf()
@@ -45,10 +50,16 @@ class NewGameScreen(Screen):
     name = inp.read("Введите свое имя: ")
     #player.name = name
     self._game.player = player
-    self._game.player.addComponent(NameComponent("name"))
+    self._game.player.name = name
     output.out(f"Добро пожаловать на арену, {player.race} {player.name}")
     self._game.player.send(LevelUpMessage(None))
     MainMenuScreen(self._game).start(output, inp)
+
+  def showDescriptionForStartMenu(self, creature):
+    creature.send(DescriptionMessage(self._output, None))
+    creature.send(DescriptionMessage(self._output, LevelComponent))
+    creature.send(DescriptionMessage(self._output, StatsComponent))
+    creature.send(DescriptionMessage(self._output, ParametersComponent))
 
 
 class MainMenuScreen(Screen):
@@ -78,7 +89,11 @@ class CharacterMenuScreen(Screen):
       choiсe = inp.read("1 - характеристики персонажа\n2 - распределить очки умений\n3 - инвентарь\n0 - назад\n")
       if choiсe == "1":
         output.out("")
-        self._game.player.send(DescriptionMessage(output))
+        self._game.player.send(DescriptionMessage(output, None))
+        self._game.player.send(DescriptionMessage(output, LevelComponent))
+        self._game.player.send(DescriptionMessage(output, StatsComponent))
+        self._game.player.send(DescriptionMessage(output, ParametersComponent))
+        self._game.player.send(DescriptionMessage(output, EquipmentSlot))
       elif choiсe == "2":
         PointsMenuScreen(self._game).start(output, inp)
       #elif choiсe == "3":

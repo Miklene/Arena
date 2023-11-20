@@ -15,6 +15,8 @@ class ParametersComponent(Component):
     pass
   
   def recieve(self, message):
+    if not isinstance(self, message.recipient):
+      return
     if message.code == MessageCode.SHOW_DESCRIPTION:
       message.object.out(self.getDescription())
     if message.code == MessageCode.UPDATE_PARAMETERS:
