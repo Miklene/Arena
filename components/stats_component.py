@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 from components.component import Component
+from components.components_enum import ComponentsEnum
 from message import UpdateParameterspMessage
 from message_code import MessageCode
 from service_objects import ServiceObjects
@@ -8,7 +9,7 @@ from service_objects import ServiceObjects
 
 class StatsComponent(Component):
   def __init__(self):
-    pass
+    super().__init__(ComponentsEnum.STATS)
     
   @abstractmethod
   def getDescription(self):

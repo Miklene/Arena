@@ -4,6 +4,7 @@ from entity import Entity
 from components.stats_component import FighterStatsComponent
 from components.parameters_component import FighterParametersComponent
 from components.equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
+from components.trade_component import TradeComponent
 from message_code import MessageCode
 from service_objects import ServiceObjects
 
@@ -18,6 +19,7 @@ class Creature(Entity):
     self.addComponent(self._level)
     self._parameters = FighterParametersComponent(self._stats)
     self.addComponent(self._parameters)
+    self.addComponent(TradeComponent())
     #self._equipment_slots = []
 
   def send(self, message):
@@ -35,6 +37,9 @@ class Creature(Entity):
   def race(self):
     return self._race
      
+  @property
+  def stats(self):
+    return self.stats
 
 class Orc(Creature):
   def __init__(self):

@@ -3,9 +3,9 @@ from output import ConsoleOutputComponent
 
 
 class Message:
-  def __init__(self, code, recipient = object):
+  def __init__(self, code, recipient = object, object = None):
     self._code = code
-    self._object = None
+    self._object = object
     self._recipient = recipient
 
   @property

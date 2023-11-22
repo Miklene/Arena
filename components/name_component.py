@@ -3,6 +3,7 @@ from message_code import MessageCode
 
 class NameComponent(Component):
   def __init__(self, name):
+    super().__init__("Name")
     self._name = name
   
   def recieve(self, message):

@@ -1,6 +1,7 @@
 from components.component import Component
 
 from abc import abstractmethod
+from components.components_enum import ComponentsEnum
 
 from message_code import MessageCode
 from service_objects import ServiceObjects
@@ -12,7 +13,7 @@ class ParametersComponent(Component):
   SPEED_PER_AGILITY = 0.2
 
   def __init__(self, stats):
-    pass
+    super().__init__(ComponentsEnum.PARAMETERS)
   
   def recieve(self, message):
     if not isinstance(self, message.recipient):

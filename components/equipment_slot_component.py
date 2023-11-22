@@ -3,6 +3,7 @@ from message_code import MessageCode
 
 class EquipmentSlot(Component):
   def __init__(self, name, equipment):
+    super().__init__(name)
     self._name = name
     self._equipment = equipment
   

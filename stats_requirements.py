@@ -23,6 +23,10 @@ class WeaponStatsRequirmentsComponent(StatsRequirementsComponent):
       output.out(f"Недостаточно ловкости {self._strength_req - stats.strength}")
     return require
 
+  def show(self, output):
+    output.out(f"Необходимо силы: {self._strength_req}")
+    output.out(f"Необходимо ловкости: {self._agility_req}")
+
 class ArmorStatsRequirmentsComponent(StatsRequirementsComponent):
 
   def __init__(self, physique_req):
