@@ -37,7 +37,8 @@ class ParametersComponent(Component):
     message = f"Одно очко телосложения равно {self.HP_PER_PHYSIQUE} очкам здоровья"
     message += f"\nОдно очко силы равно {self.DAMAGE_PER_STRENGTH} единицам урона"
     message += f"\nОдно очко ловкости равно {self.SPEED_PER_AGILITY} скорости атаки"
-    ServiceObjects().output.out(message)
+    return message
+    #ServiceObjects().output.out(message)
 
 class FighterParametersComponent(ParametersComponent):
   def __init__(self, stats):

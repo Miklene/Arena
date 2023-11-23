@@ -1,5 +1,7 @@
+from queue import LifoQueue
 from components.components_enum import ComponentsEnum
 from controllers.character_details_controller import CharacterDetailsController
+from controllers.character_points_controller import CharacterPointsController
 from equipment import Equipment, Weapon, Armor
 from creature import Creature, Human
 from models.menu_factory import CharacterMenuModelFactory, MainMenuModelFactory
@@ -32,6 +34,7 @@ class Game:
     self._trader.send(Message(MessageCode.ADD_INVENTORY, TradeComponent, inv_component))
     self._trader.name = "Оружейник"
     self._controller = None
+    self._controllers_stack = LifoQueue()
   
   def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -41,20 +44,29 @@ class Game:
   def setNextScreen(self, screen):
     if screen == ScreensEnum.MAIN_MENU:
       model = MainMenuModelFactory().create()
-      view = MenuView(model)
-      self.controller = MenuController(self, model, view)
-      self.ontroller.start()
+      self._controllers_stack.put(self._controller)
+      self._controller = MenuController(self, model)
+      self._controller.start()
     if screen == ScreensEnum.CHARACTER_MENU:
       model = CharacterMenuModelFactory().create()
-      view = MenuView(model)
-      self.controller = MenuController(self, model, view)
-      self.controller.start()
+      self._controllers_stack.put(self._controller)
+      self._controller = MenuController(self, model)
+      self._controller.start()
     if screen == ScreensEnum.CHARACTER_DETAILS:
-      model = self._player.getComponnent(ComponentsEnum.STATS)
-      view = MenuView(model)
-      self.controller = CharacterDetailsController(self, model)
+      model = self._player
+      self._controllers_stack.put(self._controller)
+      self._controller = CharacterDetailsController(self, model)
+      self._controller.start()
+    if screen == ScreensEnum.CHARACTER_POINTS:
+      self._controllers_stack.put(self._controller)
+      model = self._player
+      self._controller = CharacterPointsController(self, model)
+      self._controller.start()
+    if screen == ScreensEnum.PREVIOUS:
+      if not self._controllers_stack.empty():
+        self._controller = self._controllers_stack.get()
+        self._controller.start()
 
-      self.controller.start()
 
   @property
   def controller(self):

@@ -1,14 +1,13 @@
 from abc import ABC, abstractmethod
 
+from views.passive_view import PassiveView
+
 class Controller(ABC):
-  def __init__(self, game, model):
+  def __init__(self, game, model, view = PassiveView()):
     super().__init__()
     self._game = game
     self._model = model
-    self._views = []
-
-  def addView(self, view):
-    self._views.append(view)
+    self._view = view
 
   @abstractmethod
   def start(self):

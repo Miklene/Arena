@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class ScreensEnum(Enum):
+  PREVIOUS = 0
   NEW_GAME = 1
   MAIN_MENU = 2
   CHARACTER_MENU = 3
