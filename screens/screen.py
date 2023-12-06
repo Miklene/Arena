@@ -1,18 +1,18 @@
 from abc import ABC, abstractmethod
 from components.name_component import NameComponent
 from controllers.menu_controller import MenuController
-from creature import Orc, Elf, Human
+from entities.creature import Orc, Elf, Human
 from models.menu_factory import MainMenuModelFactory
 from output import ConsoleOutputComponent
-from message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
-from message_code import MessageCode
+from messages.message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
+from messages.message_code import MessageCode
 from contextlib import suppress
 from components.level_component import LevelComponent
 from components.stats_component import StatsComponent
 from components.parameters_component import ParametersComponent
 from components.equipment_slot_component import EquipmentSlot
 from components.trade_component import TradeComponent
-from screens_enum import ScreensEnum
+from screens.screens_enum import ScreensEnum
 from views.menu_view import MenuView
 
 
@@ -69,10 +69,11 @@ class NewGameScreen(Screen):
 
 
   def showDescriptionForStartMenu(self, creature):
-    creature.send(DescriptionMessage(self._output, None))
-    creature.send(DescriptionMessage(self._output, LevelComponent))
-    creature.send(DescriptionMessage(self._output, StatsComponent))
-    creature.send(DescriptionMessage(self._output, ParametersComponent))
+    #components_list = [None, LevelComponent, StatsComponent, ParametersComponent]
+    #for component in components_list:
+    message = DescriptionMessage(self._output, object)
+    creature.send(message)
+    message.printAnswers()
 
 
 class MainMenuScreen(Screen):
@@ -83,7 +84,7 @@ class MainMenuScreen(Screen):
     while True:
       output.out("\nГлавное меню")
       output.out("У вас: ")
-      self._game.player.send(Message(MessageCode.SHOW_DESCRIPTION, TradeComponent))
+      self._game.player.send(Message(MessageCode.SHOW_MONEY))
       self._game.player.send(Message(MessageCode.SHOW_POINTS))
       choiсe = inp.read("1 - меню персонажа\n2 - меню магазина\n3 - меню боя\n")
       if choiсe == "1":
@@ -101,7 +102,7 @@ class CharacterMenuScreen(Screen):
     while True:
       output.out("\nМеню персонажа")
       output.out("У вас: ")
-      self._game.player.send(Message(MessageCode.SHOW_DESCRIPTION, TradeComponent))
+      self._game.player.send(Message(MessageCode.SHOW_CHARACTER_INFO, TradeComponent))
       self._game.player.send(Message(MessageCode.SHOW_POINTS))
       choiсe = inp.read("1 - характеристики персонажа\n2 - распределить очки умений\n3 - инвентарь\n0 - назад\n")
       if choiсe == "1":
@@ -152,7 +153,7 @@ class StoreMenuScreen(Screen):
     while True:
       output.out("\nМеню магазина")
       output.out("У вас: ")
-      self._game.player.send(Message(MessageCode.SHOW_DESCRIPTION, TradeComponent))
+      self._game.player.send(Message(MessageCode.SHOW_CHARACTER_INFO, TradeComponent))
       choiсe = inp.read("1 - оружие\n2 - броня\n0 - назад\n")
       if choiсe == "1":
         self._game.trader.send(Message(MessageCode.BEGIN_TRADE, TradeComponent, self._game.player))

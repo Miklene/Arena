@@ -1,9 +1,10 @@
 from abc import abstractmethod
+from enum import Enum
 
 from components.component import Component
 from components.components_enum import ComponentsEnum
-from message import UpdateParameterspMessage
-from message_code import MessageCode
+from messages.message import Message, UpdateParameterspMessage
+from messages.message_code import MessageCode
 from service_objects import ServiceObjects
 
 
@@ -15,11 +16,19 @@ class StatsComponent(Component):
   def getDescription(self):
     pass
 
-  def recieve(self, message):
+  def recieve(self, message:Message):
     if not isinstance(self, message.recipient):
       return
-    if message.code == MessageCode.SHOW_DESCRIPTION:
-      message.object.out(self.getDescription())
+    if message.code == MessageCode.SHOW_CHARACTER_INFO:
+      message.addAnswer(self._id, self.getDescription())
+      #message.object.out(self.getDescription())
+
+class StatsEnum(Enum):
+  PHYSIQUE = 1
+  STRENGTH = 2
+  AGILITY = 3
+  WEAPON_DAMAGE = 4
+  ARMOR = 5
 
 class FighterStatsComponent(StatsComponent):
   

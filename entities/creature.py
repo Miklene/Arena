@@ -1,11 +1,11 @@
 from components.level_component import LevelComponent
 from components.name_component import NameComponent
-from entity import Entity
+from entities.entity import Entity
 from components.stats_component import FighterStatsComponent
 from components.parameters_component import FighterParametersComponent
 from components.equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
 from components.trade_component import TradeComponent
-from message_code import MessageCode
+from messages.message_code import MessageCode
 from service_objects import ServiceObjects
 
 class Creature(Entity):
@@ -24,7 +24,7 @@ class Creature(Entity):
 
   def send(self, message):
     if message.recipient is None:
-      if message.code == MessageCode.SHOW_DESCRIPTION:
+      if message.code == MessageCode.SHOW_CHARACTER_INFO:
         output = ServiceObjects().output
         output.out(f"{self._race} {self._name}")
         return

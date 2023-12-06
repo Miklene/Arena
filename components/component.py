@@ -1,15 +1,18 @@
 from abc import ABC, abstractmethod
-from message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
+from components.components_enum import ComponentsEnum
+from messages.message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
 
 
 class Component(ABC):
-  def __init__(self, id):
+  _id:ComponentsEnum
+
+  def __init__(self, id:ComponentsEnum):
     self._id = id
 
   @abstractmethod
-  def recieve(self, message):
+  def recieve(self, message:Message):
     pass
 
   @property
-  def id(self):
+  def id(self)->ComponentsEnum:
     return self._id

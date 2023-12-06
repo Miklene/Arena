@@ -1,8 +1,9 @@
-from entity import Entity
+from entities.entity import Entity
 from abc import abstractmethod
 
 class Equipment(Entity):
   def __init__(self, name, price, stats_requirements):
+    self._id = 0
     self._name = name
     self._price = price
     self._stats_requierments = stats_requirements
@@ -11,6 +12,10 @@ class Equipment(Entity):
   def equip(self, entity, output):
     pass
 
+  @property
+  def id(self):
+    return self._id
+    
   @property
   def name(self):
     return self._name

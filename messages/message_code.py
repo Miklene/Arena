@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class MessageCode(Enum):
-  SHOW_DESCRIPTION = 1
+  SHOW_CHARACTER_INFO = 1
   UPGRADE_STATS = 2
   LEVEL_UP = 3
   UPDATE_PARAMETERS = 4
@@ -12,3 +12,5 @@ class MessageCode(Enum):
   ADD_MONEY = 8
   BEGIN_TRADE = 9
   ADD_INVENTORY = 10
+  SHOW_CHARACTER_EQUIPMENT = 11
+  SHOW_MONEY = 12

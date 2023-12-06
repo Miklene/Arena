@@ -1,5 +1,7 @@
 from components.components_enum import ComponentsEnum
-from message import MessageCode
+from components.stats_component import StatsEnum
+from messages.message_code import MessageCode
+from messages.message import Message
 from components.component import Component
 from service_objects import ServiceObjects
 
@@ -12,11 +14,11 @@ class LevelComponent(Component):
     self._point_per_level = points_per_level
     self._current_level = 1
   
-  def recieve(self, message):
+  def recieve(self, message:Message):
     if not isinstance(self, message.recipient):
       return
-    if message.code == MessageCode.SHOW_DESCRIPTION:
-      message.object.out(self.getDescription())
+    if message.code == MessageCode.SHOW_CHARACTER_INFO:
+      message.addAnswer(self._id, self.getDescription())
     if message.code == MessageCode.UPGRADE_STATS:
       keys = message.object.keys()
       for key in keys:
@@ -40,6 +42,22 @@ class LevelComponent(Component):
       self.levelUp()
     if message.code == MessageCode.SHOW_POINTS:
       ServiceObjects().output.out(f"{self._points} нераспределенных очков умений")
+
+  def increaseStats(self, stat, value):
+    if value > self.points:
+      return "Недостаточно очков"
+    if stat == StatsEnum.PHYSIQUE:
+      self._stats.increasePhysique(value)
+      self._points -= value
+      return f"Телосложение увеличено на {value}. Текущее значение: {self._stats.physique}"
+    if stat == StatsEnum.STRENGTH:
+      self._stats.increaseStrength(value)
+      self._points -= value
+      return f"Сила увеличена на {value}. Текущее значение: {self._stats.strength}"
+    if stat == StatsEnum.AGILITY:
+      self._stats.increaseAgility(value)
+      self._points -= value
+      return f"Ловкость увеличена на {value}. Текущее значение: {self._stats.agility}"
 
   def levelUp(self):
     self._current_level += 1

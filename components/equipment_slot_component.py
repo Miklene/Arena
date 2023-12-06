@@ -1,5 +1,5 @@
 from components.component import Component
-from message_code import MessageCode
+from messages.message_code import MessageCode
 
 class EquipmentSlot(Component):
   def __init__(self, name, equipment):
@@ -10,8 +10,8 @@ class EquipmentSlot(Component):
   def recieve(self, message):
     if not isinstance(self, message.recipient):
       return
-    if message.code == MessageCode.SHOW_DESCRIPTION:
-      message.object.out(self.getDescription())
+    if message.code == MessageCode.SHOW_CHARACTER_EQUIPMENT:
+      message.addAnswer(self._id, self.getDescription())
 
   def getDescription(self):
     description = f"{self.name}: "
