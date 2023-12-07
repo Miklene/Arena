@@ -1,7 +1,7 @@
 from components.components_enum import ComponentsEnum
 from messages.message_code import MessageCode
 from output import ConsoleOutputComponent
-
+from functools import singledispatchmethod
 
 class Message:
   def __init__(self, code : MessageCode, recipient = object, object = None):
@@ -14,8 +14,19 @@ class Message:
   def answers(self):
     return self._answers
   
+  @singledispatchmethod
   def addAnswer(self, id:ComponentsEnum, answer:str):
-    self._answers[id] = answer
+    if self._answers.get(id) == None:
+      self._answers[id] = answer
+    else:
+      self._answers[id] += answer
+  
+  @addAnswer.register(int)
+  def addAnswer(self, id:ComponentsEnum, answer:int):
+    if self._answers.get(id) == None:
+      self._answers[id] = str(answer)
+    else:
+      self._answers[id] = str(int(self._answers[id]) +  answer)
 
   def printAnswers(self):
     for answer in self._answers.values():
@@ -23,7 +34,7 @@ class Message:
 
   def getAnswer(self, id):
     return self._answers.get(id)
-    
+
   @property
   def code(self) -> MessageCode:
     return self._code
@@ -63,3 +74,10 @@ class UpdateParameterspMessage(Message):
   def __init__(self, output, recipient = object):
     super().__init__(MessageCode.UPDATE_PARAMETERS, recipient)
     self._object = output
+
+class GetParametersMessage(Message):
+  def __init__(self, code: MessageCode, recipient = object):
+    super().__init__(code, recipient)
+    
+
+  

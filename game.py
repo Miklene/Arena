@@ -27,7 +27,7 @@ class Game:
     self._output = ConsoleOutputComponent()
     self._input = ConsoleInputComponent()
     self._screen = NewGameScreen(self)
-    self._player = None
+    self._player:Creature = None
     self._trader = Human()
     #trade_component = TradeComponent()
     inv_component = InventoryComponent()
@@ -94,7 +94,7 @@ class Game:
     self._controller = controller
 
   @property
-  def player(self):
+  def player(self) -> Creature:
     return self._player
 
   @property

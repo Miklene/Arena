@@ -8,3 +8,9 @@ class ComponentsEnum(Enum):
   LEVEL = 4
   INVENTORY = 5
   RACE = 6
+  ABILITY = 7
+
+  PHYSIQUE = 20
+  STRENGTH = 21
+  AGILITY = 22
+  ARMOR = 23

@@ -14,3 +14,9 @@ class MessageCode(Enum):
   ADD_INVENTORY = 10
   SHOW_CHARACTER_EQUIPMENT = 11
   SHOW_MONEY = 12
+  #Stats
+  GET_PHYSIQUE = 100
+  GET_STRENGTH = 101
+  GET_AGILITY = 102
+  #Parameters
+  GET_ARMOR = 110

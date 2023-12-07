@@ -1,9 +1,10 @@
+from components.ability_component import ThickSkin
 from components.components_enum import ComponentsEnum
 from controllers.controller import Controller
 from service_objects import ServiceObjects
 from entities.creature import Orc, Elf, Human
 from messages.message_code import MessageCode
-from messages.message import DescriptionMessage, Message, UpgradeStatsMessage, LevelUpMessage
+from messages.message import DescriptionMessage, GetParametersMessage, Message, UpgradeStatsMessage, LevelUpMessage
 from components.trade_component import TradeComponent
 from screens.screens_enum import ScreensEnum
 
@@ -48,6 +49,11 @@ class NewGameController(Controller):
     self._output.out(f"Добро пожаловать на арену, {race} {player.name}")
     self._game.player.send(LevelUpMessage(None))
     self._game.player.send(Message(MessageCode.ADD_MONEY, TradeComponent, 100))
+    player.addComponent(ThickSkin())
+    message = GetParametersMessage(MessageCode.GET_ARMOR)
+    player.send(message)
+    armor = message.getAnswer(ComponentsEnum.ARMOR)
+    print(f"Броня: {armor}")
     self._game.setNextScreen(ScreensEnum.MAIN_MENU)
 
   def showDescriptionForStartMenu(self, creature):

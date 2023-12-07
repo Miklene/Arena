@@ -25,7 +25,7 @@ class ParametersComponent(Component):
       self.update()
     if message.code == MessageCode.SHOW_PARAMETERS_PER_STATS:
       self.showParametersPerStats()
-
+    
   @abstractmethod
   def getDescription(self):
     pass   
@@ -42,10 +42,19 @@ class ParametersComponent(Component):
     #ServiceObjects().output.out(message)
 
 class FighterParametersComponent(ParametersComponent):
+
+  _hp:int
+
   def __init__(self, stats):
     super().__init__(stats)
     self._stats = stats
     self.update()
+
+  def recieve(self, message: Message):
+    super().recieve(message)
+    if message.code == MessageCode.GET_PHYSIQUE:
+      message.addAnswer(ComponentsEnum.PHYSIQUE, self._hp)
+
 
   def getDescription(self):
     description = f"Здоровье: {self._hp}"
@@ -55,7 +64,7 @@ class FighterParametersComponent(ParametersComponent):
     return description
   
   def update(self):
-    self._hp = self._stats.physique * self.HP_PER_PHYSIQUE
+    self._hp = int(self._stats.physique * self.HP_PER_PHYSIQUE)
     self._damage = self._stats.strength * self.DAMAGE_PER_STRENGTH
     self._speed = self._stats.agility * self.SPEED_PER_AGILITY
     self._attack_speed = 1 / self._speed
