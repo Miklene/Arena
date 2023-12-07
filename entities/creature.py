@@ -1,5 +1,6 @@
 from components.level_component import LevelComponent
 from components.name_component import NameComponent
+from components.race_component import RaceComponent
 from entities.entity import Entity
 from components.stats_component import FighterStatsComponent
 from components.parameters_component import FighterParametersComponent
@@ -12,7 +13,6 @@ class Creature(Entity):
   
   def __init__(self, stats):
     super().__init__()
-    self._race = "No race"
     self._stats = stats
     self.addComponent(self._stats)
     self._level = LevelComponent(self._stats, 20, 2)
@@ -23,19 +23,15 @@ class Creature(Entity):
     #self._equipment_slots = []
 
   def send(self, message):
-    if message.recipient is None:
-      if message.code == MessageCode.SHOW_CHARACTER_INFO:
-        output = ServiceObjects().output
-        output.out(f"{self._race} {self._name}")
-        return
+    #if message.recipient is None:
+    #  if message.code == MessageCode.SHOW_CHARACTER_INFO:
+    #    output = ServiceObjects().output
+    #    output.out(f"{self._race} {self._name}")
+    #    return
       #output.out(self._level.getDescription())
       #output.out(self._stats.getDescription())
       #output.out(self._parameters.getDescription())
     super().send(message)
-
-  @property
-  def race(self):
-    return self._race
      
   @property
   def stats(self):
@@ -44,7 +40,7 @@ class Creature(Entity):
 class Orc(Creature):
   def __init__(self):
     super().__init__(FighterStatsComponent(10,9,6))
-    self._race = "Орк"
+    self.addComponent(RaceComponent("Орк"))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
     self.addComponent(ArmorEquipmentSlot("Тело", None))
  
@@ -52,7 +48,7 @@ class Orc(Creature):
 class Human(Creature):
   def __init__(self):
     super().__init__(FighterStatsComponent(9,9,7))
-    self._race = "Человек"
+    self.addComponent(RaceComponent("Человек"))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
     self.addComponent(ArmorEquipmentSlot("Тело", None))
 
@@ -60,7 +56,7 @@ class Human(Creature):
 class Elf(Creature):
   def __init__(self ):
     super().__init__(FighterStatsComponent(8,8,9))
-    self._race = "Эльф"
+    self.addComponent(RaceComponent("Эльф"))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
     self.addComponent(ArmorEquipmentSlot("Тело", None))
     

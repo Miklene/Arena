@@ -4,11 +4,11 @@ from output import ConsoleOutputComponent
 
 
 class Message:
-  def __init__(self, code, recipient = object, object = None):
-    self._code = code
+  def __init__(self, code : MessageCode, recipient = object, object = None):
+    self._code : MessageCode = code
     self._object = object
     self._recipient = recipient
-    self._answers={}
+    self._answers : dict[ComponentsEnum, str]={}
   
   @property
   def answers(self):
@@ -21,8 +21,11 @@ class Message:
     for answer in self._answers.values():
       print(answer)
 
+  def getAnswer(self, id):
+    return self._answers.get(id)
+    
   @property
-  def code(self):
+  def code(self) -> MessageCode:
     return self._code
 
   @property
@@ -38,6 +41,13 @@ class DescriptionMessage(Message):
   def __init__(self, output, recipient = object):
     super().__init__(MessageCode.SHOW_CHARACTER_INFO, recipient)
     self._object = output
+
+  def printAnswers(self):
+    components=[ComponentsEnum.RACE, ComponentsEnum.STATS, ComponentsEnum.PARAMETERS]
+    for component in components:
+      if self._answers.get(component) != None:
+        print(self._answers.get(component))
+
 
 class UpgradeStatsMessage(Message):
   def __init__(self, output, recipient = object):

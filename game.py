@@ -2,6 +2,7 @@ from queue import LifoQueue
 from components.components_enum import ComponentsEnum
 from controllers.character_details_controller import CharacterDetailsController
 from controllers.character_points_controller import CharacterPointsController
+from controllers.new_game_controller import NewGameController
 from controllers.store_controller import StoreController
 from screens.equipment import Equipment, Weapon, Armor
 from entities.creature import Creature, Human
@@ -44,7 +45,11 @@ class Game:
             cls.instance = super(Game, cls).__new__(cls)
         return cls.instance
 
-  def setNextScreen(self, screen):
+  def setNextScreen(self, screen:ScreensEnum):
+    if screen == ScreensEnum.NEW_GAME:
+      self._controllers_stack.queue.clear()
+      self._controller = NewGameController(self, None)
+      self._controller.start()
     if screen == ScreensEnum.MAIN_MENU:
       model = MainMenuModelFactory().create()
       self._controllers_stack.put(self._controller)
@@ -105,6 +110,7 @@ class Game:
     self._player = player
 
   def start(self):
-    self._screen.start(self._output, self._input)
+    #self._screen.start(self._output, self._input)
+    self.setNextScreen(ScreensEnum.NEW_GAME)
   
   

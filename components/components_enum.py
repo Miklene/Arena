@@ -7,3 +7,4 @@ class ComponentsEnum(Enum):
   TRADE = 3
   LEVEL = 4
   INVENTORY = 5
+  RACE = 6
