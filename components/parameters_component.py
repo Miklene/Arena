@@ -52,8 +52,10 @@ class FighterParametersComponent(ParametersComponent):
 
   def recieve(self, message: Message):
     super().recieve(message)
-    if message.code == MessageCode.GET_PHYSIQUE:
-      message.addAnswer(ComponentsEnum.PHYSIQUE, self._hp)
+    if message.code == MessageCode.GET_HP:
+      message.addAnswer(ComponentsEnum.HP, self._hp)
+    if message.code == MessageCode.GET_CURRENT_HP:
+      message.addAnswer(ComponentsEnum.CURRENT_HP, self._current_hp)
 
 
   def getDescription(self):
@@ -65,6 +67,7 @@ class FighterParametersComponent(ParametersComponent):
   
   def update(self):
     self._hp = int(self._stats.physique * self.HP_PER_PHYSIQUE)
+    self._current_hp = self._hp
     self._damage = self._stats.strength * self.DAMAGE_PER_STRENGTH
     self._speed = self._stats.agility * self.SPEED_PER_AGILITY
     self._attack_speed = 1 / self._speed

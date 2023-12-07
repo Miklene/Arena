@@ -14,3 +14,5 @@ class ComponentsEnum(Enum):
   STRENGTH = 21
   AGILITY = 22
   ARMOR = 23
+  HP = 24
+  CURRENT_HP = 25

@@ -33,6 +33,10 @@ class Creature(Entity):
       #output.out(self._parameters.getDescription())
     super().send(message)
      
+  def prepare_to_battle(self):
+    
+
+
   @property
   def stats(self):
     return self.stats

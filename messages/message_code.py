@@ -20,3 +20,5 @@ class MessageCode(Enum):
   GET_AGILITY = 102
   #Parameters
   GET_ARMOR = 110
+  GET_HP = 111
+  GET_CURRENT_HP = 112

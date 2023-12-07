@@ -49,11 +49,11 @@ class NewGameController(Controller):
     self._output.out(f"Добро пожаловать на арену, {race} {player.name}")
     self._game.player.send(LevelUpMessage(None))
     self._game.player.send(Message(MessageCode.ADD_MONEY, TradeComponent, 100))
-    player.addComponent(ThickSkin())
-    message = GetParametersMessage(MessageCode.GET_ARMOR)
-    player.send(message)
-    armor = message.getAnswer(ComponentsEnum.ARMOR)
-    print(f"Броня: {armor}")
+    #player.addComponent(ThickSkin())
+    #message = GetParametersMessage(MessageCode.GET_ARMOR)
+    #player.send(message)
+    #armor = message.getAnswer(ComponentsEnum.ARMOR)
+    #print(f"Броня: {armor}")
     self._game.setNextScreen(ScreensEnum.MAIN_MENU)
 
   def showDescriptionForStartMenu(self, creature):
