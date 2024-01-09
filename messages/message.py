@@ -9,18 +9,18 @@ class Message:
     self._object = object
     self._recipient = recipient
     self._answers : dict[ComponentsEnum, str]={}
-  
+
   @property
   def answers(self):
     return self._answers
-  
+
   @singledispatchmethod
   def addAnswer(self, id:ComponentsEnum, answer:str):
     if self._answers.get(id) == None:
       self._answers[id] = answer
     else:
       self._answers[id] += answer
-  
+
   @addAnswer.register(int)
   def addAnswer(self, id:ComponentsEnum, answer:int):
     if self._answers.get(id) == None:
@@ -32,7 +32,7 @@ class Message:
     for answer in self._answers.values():
       print(answer)
 
-  def getAnswer(self, id):
+  def getAnswer(self, id:ComponentsEnum):
     return self._answers.get(id)
 
   @property
@@ -49,12 +49,16 @@ class Message:
 
 
 class DescriptionMessage(Message):
+  """Сообщение с кодом SHOW_CHARACTER_INFO.
+  output - класс вывода
+  recipient - получатель сообщения. object - сообщение для всех"""
   def __init__(self, output, recipient = object):
     super().__init__(MessageCode.SHOW_CHARACTER_INFO, recipient)
     self._object = output
 
-  def printAnswers(self):
-    components=[ComponentsEnum.RACE, ComponentsEnum.STATS, ComponentsEnum.PARAMETERS]
+  def printAnswers(self, components:list[ComponentsEnum]):
+    """Напечатать ответы на сообщения.
+    components - список компонентов, чьи ответы нужно вывести. Порядок важен"""
     for component in components:
       if self._answers.get(component) != None:
         print(self._answers.get(component))
@@ -78,6 +82,3 @@ class UpdateParameterspMessage(Message):
 class GetParametersMessage(Message):
   def __init__(self, code: MessageCode, recipient = object):
     super().__init__(code, recipient)
-    
-
-  

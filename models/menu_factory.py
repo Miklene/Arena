@@ -30,3 +30,11 @@ class StoreMenuModelFactory(MenuModelFactry):
     model.addMenuItem(MenuItem("2", "броня", ScreensEnum.STORE_ARMOR))
     model.addMenuItem(MenuItem("0", "назад", ScreensEnum.PREVIOUS))
     return model
+
+class FightMenuModelFactory(MenuModelFactry):
+  def create(self):
+    model = MenuModel("\nБой")
+    model.addMenuItem(MenuItem("1", "Быстрый бой", ScreensEnum.FAST_FIGHT))
+    model.addMenuItem(MenuItem("2", "Подробный бой", ScreensEnum.SLOW_FIGHT))
+    model.addMenuItem(MenuItem("0", "назад", ScreensEnum.PREVIOUS))
+    return model

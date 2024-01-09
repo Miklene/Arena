@@ -20,6 +20,8 @@ from messages.message_code import MessageCode
 from screens.screens_enum import ScreensEnum
 from views.menu_view import MenuView
 from controllers.menu_controller import MenuController
+from controllers.fight import FightController
+
 
 
 class Game:
@@ -39,7 +41,7 @@ class Game:
     self._trader.name = "Оружейник"
     self._controller = None
     self._controllers_stack = LifoQueue()
-  
+
   def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(Game, cls).__new__(cls)
@@ -79,6 +81,10 @@ class Game:
       self._controllers_stack.put(self._controller)
       self._controller = StoreController(self._trader, self._player)
       self._controller.start()
+    if screen == ScreensEnum.FIGHT_MENU:
+      self._controllers_stack.put(self._controller)
+      self._controller = FightController(self, model)
+      self._controller.start()
     if screen == ScreensEnum.PREVIOUS:
       if not self._controllers_stack.empty():
         self._controller = self._controllers_stack.get()
@@ -88,7 +94,7 @@ class Game:
   @property
   def controller(self):
     return self._controller
-  
+
   @controller.setter
   def controller(self, controller):
     self._controller = controller
@@ -112,5 +118,3 @@ class Game:
   def start(self):
     #self._screen.start(self._output, self._input)
     self.setNextScreen(ScreensEnum.NEW_GAME)
-  
-  

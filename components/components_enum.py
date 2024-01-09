@@ -9,6 +9,7 @@ class ComponentsEnum(Enum):
   INVENTORY = 5
   RACE = 6
   ABILITY = 7
+  NAME = 8
 
   PHYSIQUE = 20
   STRENGTH = 21

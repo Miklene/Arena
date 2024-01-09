@@ -13,3 +13,5 @@ class ScreensEnum(Enum):
   STORE_WEAPON = 8
   STORE_ARMOR = 9
   FIGHT_MENU = 10
+  FAST_FIGHT = 11
+  SLOW_FIGHT = 12

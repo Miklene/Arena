@@ -12,7 +12,7 @@ from screens.screens_enum import ScreensEnum
 class NewGameController(Controller):
   def __init__(self, game, model):
     super().__init__(game, model)
-  
+
   def start(self):
     inp = ServiceObjects().input
     self._output = ServiceObjects().output
@@ -57,6 +57,6 @@ class NewGameController(Controller):
     self._game.setNextScreen(ScreensEnum.MAIN_MENU)
 
   def showDescriptionForStartMenu(self, creature):
-    message = DescriptionMessage(self._output, object)
+    message = DescriptionMessage(self._output,)
     creature.send(message)
-    message.printAnswers()
+    message.printAnswers([ComponentsEnum.RACE, ComponentsEnum.STATS, ComponentsEnum.PARAMETERS])

@@ -6,10 +6,11 @@ from components.stats_component import FighterStatsComponent
 from components.parameters_component import FighterParametersComponent
 from components.equipment_slot_component import ArmorEquipmentSlot, WeaponEquipmentSlot
 from components.trade_component import TradeComponent
+from entities.fightable import Fightable
 from messages.message_code import MessageCode
 from service_objects import ServiceObjects
 
-class Creature(Entity):
+class Creature(Entity, Fightable):
   
   def __init__(self, stats):
     super().__init__()
@@ -31,15 +32,25 @@ class Creature(Entity):
       #output.out(self._level.getDescription())
       #output.out(self._stats.getDescription())
       #output.out(self._parameters.getDescription())
-    super().send(message)
-     
-  def prepare_to_battle(self):
+    super().send(message)   
+
+  def joinBattle(self, opponent):
+    self._opponent = opponent
     
 
+  def update(self, delta, pause):
+    pass
+
+  def attack(self):
+    self._opponent.receive_damage
+
+  def receive_damage(self, damage): 
+    pass
 
   @property
   def stats(self):
     return self.stats
+
 
 class Orc(Creature):
   def __init__(self):
