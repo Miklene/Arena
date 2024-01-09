@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
 
-class NewGameWidgetView(metaclass = ABCMeta):
+class NewGameWidgetView(metaclass=ABCMeta):
 
-    pass
+    @abstractmethod
+    def start_new_game(self) -> None:
+        pass

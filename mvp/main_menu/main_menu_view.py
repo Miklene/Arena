@@ -1,12 +1,14 @@
 from abc import ABCMeta, abstractmethod
-from PyQt5.QtWidgets import *
 
-class MainMenuView(metaclass = ABCMeta):
+
+class MainMenuView(metaclass=ABCMeta):
 
     @abstractmethod
-    def set_button_back_visibility(self, visible:bool)->None:
+    def set_button_back_visibility(self, visible: bool) -> None:
         pass
 
     @abstractmethod
-    def start_new_game(self)->None:
+    def show_new_game_menu(self) -> None:
         pass
+
+
