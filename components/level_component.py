@@ -1,19 +1,27 @@
 from components.components_enum import ComponentsEnum
-from components.stats_component import StatsEnum
+from components.stats_component import StatsComponent, StatsEnum
 from messages.message_code import MessageCode
 from messages.message import Message
 from components.component import Component
 from service_objects import ServiceObjects
 
 class LevelComponent(Component):
-  def __init__(self, stats, max_level, points_per_level):
+  """Компонент уровень"""
+  def __init__(self, stats: StatsComponent,  initial_level: int = 1, max_level: int = 40, initial_points: int = 5,  points_per_level: int = 2):
+    """Инициализация компонента уровень
+      - stats - компонент характеристик
+      - initial_level - начальный уровень персонажа
+      - max_level - максимальный уровень персонажа
+      - initial_points - начальное количество очков
+      - points_per_level - количество очков за уровень
+    """
     super().__init__(ComponentsEnum.LEVEL)
     self._stats = stats
     self._max_level = max_level
-    self._points = 0
+    self._points = initial_points
     self._point_per_level = points_per_level
-    self._current_level = 1
-  
+    self._current_level = initial_level
+
   def recieve(self, message:Message):
     if not isinstance(self, message.recipient):
       return
@@ -69,10 +77,7 @@ class LevelComponent(Component):
   @property
   def maxLevel(self):
     return self._max_level
-  
-  @property 
+
+  @property
   def points(self):
     return self._points
-  
-  
-  

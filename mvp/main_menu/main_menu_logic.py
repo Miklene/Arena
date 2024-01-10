@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from gui.main_menu.main_menu import Ui_MainMenu
+from gui.main_menu import Ui_MainMenu
 from mvp.main_menu.main_menu_presenter import MainMenuPresenter
 
 from mvp.main_menu.main_menu_view import MainMenuView

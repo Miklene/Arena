@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
+from entities.creature import Creature
+
 
 class MainWindowView(metaclass=ABCMeta):
 
@@ -8,5 +10,5 @@ class MainWindowView(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def start_new_game(self):
+    def start_new_game(self, player: Creature):
         pass

@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.Qt import *
 from gui.character_stats import Ui_CharacterStatsWidget
 from mvp.character_stats_widget.character_stats_widget_presenter import CharacterStatsWidgetPresenter
 from mvp.character_stats_widget.character_stats_widget_view import CharacterStatsWidgetView
@@ -6,7 +7,7 @@ from mvp.character_stats_widget.character_stats_widget_view import CharacterStat
 
 
 from mvp.main_menu.main_menu_meta import MainMenuMeta
-
+from mvp.character_stats_widget.stats_signals import *
 
 class CharacterStatsWidgetLogic(QWidget, CharacterStatsWidgetView, metaclass = MainMenuMeta):
 
@@ -24,6 +25,9 @@ class CharacterStatsWidgetLogic(QWidget, CharacterStatsWidgetView, metaclass = M
         self.ui.button_strength_decrease.clicked.connect(self.__presenter.button_strength_decrease_clicked)
         self.ui.button_agility_increase.clicked.connect(self.__presenter.button_agility_increase_clicked)
         self.ui.button_agility_decrease.clicked.connect(self.__presenter.button_agility_decrease_clicked)
+
+        self.signal_physique_inc = SignalPhysiqueIncreased()
+        self.ui.button_physique_increase.clicked.connect(self.signal_physique_inc.signal)
 
     def set_button_physique_increase_activity(self, active: bool) -> None:
         self.ui.button_physique_increase.setEnabled(active)

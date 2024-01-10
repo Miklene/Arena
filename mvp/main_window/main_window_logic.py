@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
+from entities.creature import Creature
 
-from gui.main_window.main_window import Ui_MainWindow
+from gui.main_window import Ui_MainWindow
 from mvp.game_window.game_window_logic import GameWindowLogic
 from mvp.main_menu.main_menu_logic import MainMenuLogic
 from mvp.main_menu.main_menu_meta import MainMenuMeta
@@ -21,7 +22,7 @@ class MainWindowLogic(QMainWindow, MainWindowView, metaclass=MainMenuMeta):
     def show_new_game_menu(self) -> None:
         self.__set_new_widget(NewGameWidgetLogic(self))
 
-    def start_new_game(self):
+    def start_new_game(self, player: Creature):
         self.__set_new_widget(GameWindowLogic(self))
 
     def __set_new_widget(self, widget: QWidget) -> None:

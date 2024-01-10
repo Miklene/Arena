@@ -11,16 +11,17 @@ from messages.message_code import MessageCode
 from service_objects import ServiceObjects
 
 class Creature(Entity, Fightable):
-  
+  """Класс существа.
+  """
   def __init__(self, stats):
     super().__init__()
     self._stats = stats
-    self.addComponent(self._stats)
-    self._level = LevelComponent(self._stats, 20, 2)
-    self.addComponent(self._level)
-    self._parameters = FighterParametersComponent(self._stats)
-    self.addComponent(self._parameters)
-    self.addComponent(TradeComponent())
+    #self.addComponent(self._stats)
+    #self._level = LevelComponent(self._stats)
+    #self.addComponent(self._level)
+    #self._parameters = FighterParametersComponent(self._stats)
+    #self.addComponent(self._parameters)
+    #self.addComponent(TradeComponent())
     #self._equipment_slots = []
 
   def send(self, message):
@@ -32,11 +33,11 @@ class Creature(Entity, Fightable):
       #output.out(self._level.getDescription())
       #output.out(self._stats.getDescription())
       #output.out(self._parameters.getDescription())
-    super().send(message)   
+    super().send(message)
 
   def joinBattle(self, opponent):
     self._opponent = opponent
-    
+
 
   def update(self, delta, pause):
     pass
@@ -44,7 +45,7 @@ class Creature(Entity, Fightable):
   def attack(self):
     self._opponent.receive_damage
 
-  def receive_damage(self, damage): 
+  def receive_damage(self, damage):
     pass
 
   @property
@@ -58,7 +59,7 @@ class Orc(Creature):
     self.addComponent(RaceComponent("Орк"))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
     self.addComponent(ArmorEquipmentSlot("Тело", None))
- 
+
 
 class Human(Creature):
   def __init__(self):
@@ -74,4 +75,3 @@ class Elf(Creature):
     self.addComponent(RaceComponent("Эльф"))
     self.addComponent(WeaponEquipmentSlot("Правая рука", None))
     self.addComponent(ArmorEquipmentSlot("Тело", None))
-    
