@@ -13,6 +13,8 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.ui.setupUi(self)
         self.show()
 
+        self.__variants: dict[QPushButton, int] = {}
+
         self.__presenter: GameWindowPresenter = GameWindowPresenter(self, player)
 
         self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)
@@ -22,3 +24,22 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
 
     def add_text_to_log(self, text: str) -> None:
         self.ui.log.appendPlainText(text)
+
+    def insert_text_to_log(self, text: str) -> None:
+        self.ui.log.insertPlainText(text)
+
+    def clear_variants(self) -> None:
+        for i in reversed(range(self.ui.layout_choice_buttons.count())):
+            self.ui.layout_choice_buttons.itemAt(i).widget().deleteLater()
+
+    def add_variant(self, variant: str, id: int) -> None:
+        button:QPushButton = QPushButton(variant, self)
+        button.clicked.connect(self.variant_clicked)
+
+        self.__variants[button] = id
+        self.ui.layout_choice_buttons.addWidget(button)
+
+    def variant_clicked(self):
+        sender = self.sender()
+        id = self.__variants.get(sender)
+        self.__presenter.variant_clicked(id)

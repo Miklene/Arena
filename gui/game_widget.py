@@ -34,7 +34,7 @@ class Ui_GameWidget(object):
         self.log = QtWidgets.QPlainTextEdit(GameWidget)
         self.log.setObjectName("log")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.log)
-        self.layout_choice_buttons = QtWidgets.QHBoxLayout()
+        self.layout_choice_buttons = QtWidgets.QVBoxLayout()
         self.layout_choice_buttons.setObjectName("layout_choice_buttons")
         self.formLayout.setLayout(1, QtWidgets.QFormLayout.FieldRole, self.layout_choice_buttons)
 

@@ -1,0 +1,188 @@
+<?xml version ="1.0" encoding="utf-8"?>
+
+<!DOCTYPE foods [
+  <!ENTITY player_name "Миклен">
+  <!-- .... -->
+]>
+
+<messages>
+    <message id="0">
+        <text>Вы сын крестьянина. Ваша семья живет в небольшой деревушке Сараево королества Рассея. Вы единственный ребенок в семье.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>1</next_message_id>
+        </variant>
+    </message>
+    <message id="1">
+        <text>В детстве вы </text>
+        <variant id="0">
+            <text>любили плотно покушать (Телосложение + 1).</text>
+            <log_text>любили плотно покушать (Телосложение + 1).</log_text>
+            <next_message_id>2</next_message_id>
+        </variant>
+        <variant id="1">
+            <text>любили играть в царь горы с другими детьми (Сила + 1).</text>
+            <log_text>любили играть в царь горы с другими детьми (Сила + 1).</log_text>
+            <next_message_id>3</next_message_id>
+        </variant>
+        <variant id="2">
+            <text>любили лазать по чужим огородам (Ловкость + 1).</text>
+            <log_text>любили лазать по чужим огородам (Ловкость + 1).</log_text>
+            <next_message_id>4</next_message_id>
+        </variant>
+    </message>
+    <message id="2">
+        <text>С таким аппетитом вы росли крупнее своих сверстников.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>5</next_message_id>
+        </variant>
+    </message>
+    <message id="3">
+        <text>Активные игры сделали вас сильнее.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>5</next_message_id>
+        </variant>
+    </message>
+    <message id="4">
+        <text>Лазание по чужим садам сделало вас главным хулиганом деревни.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>5</next_message_id>
+        </variant>
+    </message>
+
+    <message id="5">
+        <text>В юности вы: </text>
+        <variant id = "0">
+            <text>помогали матери в поле (Телосложение +2).</text>
+            <log_text>помогали матери в поле (Телосложение +2).</log_text>
+            <next_message_id>6</next_message_id>
+        </variant>
+        <variant id = "1">
+            <text>рубили лес с отцом (Сила +2).</text>
+            <log_text>рубили лес с отцом (Сила +2).</log_text>
+            <next_message_id>7</next_message_id>
+        </variant>
+        <variant id = "2">
+            <text>занимались паркуром по крышам сараев (Ловкость +2).</text>
+            <log_text>занимались паркуром по крышам сараев (Ловкость +2).</log_text>
+            <next_message_id>8</next_message_id>
+        </variant>
+    </message>
+    <message id="6">
+        <text>Тяжелый труд в поле сделал вас выносливее.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>9</next_message_id>
+        </variant>
+    </message>
+    <message id="7">
+        <text>Орудуя топором вы научились вкладывать всю силу в удар.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>9</next_message_id>
+        </variant>
+    </message>
+    <message id="8">
+        <text>Такие пируэты не мог повторить никто. Ребятня восхищалась вами, а взрослые порицали ваше увлечение.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>9</next_message_id>
+        </variant>
+    </message>
+
+    <message id = "9">
+    <text>Повзрослев вы: </text>
+        <variant id = "0">
+            <text>продолжили помогать родителям по хозяйству (Двуручное оружие +1).</text>
+            <log_text>продолжили помогать родителям по хозяйству (Двуручное оружие +1).</log_text>
+            <next_message_id>10</next_message_id>
+        </variant>
+        <variant id = "1">
+            <text>стали оруженосцем владельца поместия (Одноручное оружие +1).</text>
+            <log_text>стали оруженосцем владельца поместия (Одноручное оружие +1).</log_text>
+            <next_message_id>11</next_message_id>
+        </variant>
+        <variant id = "2">
+            <text>пошли в подмастерье к леснику (Лук + 1).</text>
+            <log_text>пошли в подмастерье к леснику (Лук + 1).</log_text>
+            <next_message_id>12</next_message_id>
+        </variant>
+    </message>
+    <message id="10">
+        <text>Работа с вилами и топором научила вас обращаться с простым двуручным оружием.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>13</next_message_id>
+        </variant>
+    </message>
+    <message id="11">
+        <text>Ваш господин научил вас азам фехтования.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>13</next_message_id>
+        </variant>
+    </message>
+    <message id="12">
+        <text>Лесник научил вас, как охотится с луком.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>13</next_message_id>
+        </variant>
+    </message>
+
+    <message id="13">
+        <text>Став взрослым, вы остались с родителями, чтобы помочь им. Ведь кроме вас, у них никого нет. Отсюда и начинается ваша история.
+Однажды охотник Джек вернулся из леса и принес необыкновенного зверя. Вы пришли в дом старосты посмотреть на добычу охотника. Это был кабан, но его шерсть стала жесткой и острой как иглы, глаза налились кровью, а из пасти сочилась кровь и пена.
+Охотник поведал, что зверь был очень агрессивен и его было очень тяжело убить.</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>14</next_message_id>
+        </variant>
+    </message>
+    <message id="14">
+        <text>Староста Иннокентий: "Впервые вижу такого кабана. Джек, тебе нужно прочесать лес и найти, откуда пришел этот зверь."</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>15</next_message_id>
+        </variant>
+    </message>
+    <message id="15">
+        <text>Охотник Джек: "Я один в лес больше не пойду. Еле справился с этой бестией. Надо сообщить владельцу поместия - лорду Отто Октавиусу. Пусть он пошлет свою дружину со мной."</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>16</next_message_id>
+        </variant>
+    </message>
+    <message id="16">
+        <text>Староста Иннокентий: "Лорд сейчас в столице. Нам придется самим решать наши проблемы. Кто пойдет с Джеком в лес?"</text>
+        <variant id="0">
+            <text>Вызваться добровольцем</text>
+            <log_text>&#xD;&#xA;Вы: "Я пойду!"</log_text>
+            <next_message_id>17</next_message_id>
+        </variant>
+    </message>
+    <message id = "17">
+        <text>Староста Иннокентий: "&player_name;, спасибо. Кто еще?"</text>
+        <variant id="0">
+            <text>Далее</text>
+            <log_text></log_text>
+            <next_message_id>17</next_message_id>
+        </variant>
+    </message>
+</messages>
