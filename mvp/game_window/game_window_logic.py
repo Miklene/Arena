@@ -16,7 +16,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
 
         self.__variants: dict[QPushButton, int] = {}
 
-        self.__presenter: GameWindowPresenter = GameWindowPresenter(self, player)
+        self.__presenter: GameWindowPresenter = GameWindowPresenter(view=self, player=player)
 
         self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)
         self.ui.button_abilities.clicked.connect(self.__presenter.button_abilities_clicked)

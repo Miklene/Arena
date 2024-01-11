@@ -1,4 +1,5 @@
 from contextlib import suppress
+from components.inventory_component import InventoryComponent
 from entities.creature import Creature
 from PyQt5.QtGui import QColor
 from mvp.game_window.game_window_view import GameWindowView
@@ -6,6 +7,7 @@ import xml.etree.ElementTree as ET
 import json
 from screens.equipment import Weapon
 from stats_requirements import WeaponStatsRequirmentsComponent
+from components.components_enum import ComponentsEnum
 
 class GameWindowPresenter:
     SELF_COLOR = QColor(0x0000FF)
@@ -18,7 +20,6 @@ class GameWindowPresenter:
         self.__current_message_file = 'strings/new_game.json'
 
         self.__current_variatns = {}
-        #self.__root = ET.parse('strings/new_game.xml').getroot()
 
         self.read_new_message_file()
         self.__print_message()
@@ -57,7 +58,8 @@ class GameWindowPresenter:
                                         weapon_requirments = WeaponStatsRequirmentsComponent(item['strength'], item['agility'])
                                         weapon = Weapon(item['name'],item['price'], item['damage'],weapon_requirments)
                                         self.__view.insert_text_to_log(weapon.name)
-
+                                        inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+                                        inventory.addEquipment(weapon)
                 self.__add_variants(message)
 
 

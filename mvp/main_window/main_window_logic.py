@@ -23,7 +23,7 @@ class MainWindowLogic(QMainWindow, MainWindowView, metaclass=MainMenuMeta):
         self.__set_new_widget(NewGameWidgetLogic(self))
 
     def start_new_game(self, player: Creature):
-        self.__set_new_widget(GameWindowLogic(self))
+        self.__set_new_widget(GameWindowLogic(player, self))
 
     def __set_new_widget(self, widget: QWidget) -> None:
         if self.__current_widget is not None:
