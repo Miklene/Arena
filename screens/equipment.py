@@ -15,15 +15,15 @@ class Equipment(Entity):
   @property
   def id(self):
     return self._id
-    
+
   @property
   def name(self):
     return self._name
-  
+
   @property
   def price(self):
     return self._price
-  
+
   @property
   def stats_requierments(self):
     return self._stats_requierments
@@ -41,12 +41,15 @@ class Weapon(Equipment):
   def equip(self, entity, output):
     if self._stats_requierments.isSatisfyRequirements(entity.stats, output):
       output.out(f"Вы экипировали {self._name}")
-      
+
   def show(self, output, index = ""):
-    output.out(f"{index}. {self._name}")    
-    output.out(f"Стоимость {self._price}")    
-    output.out(f"Урон {self._damage}")   
+    output.out(f"{index}. {self._name}")
+    output.out(f"Стоимость {self._price}")
+    output.out(f"Урон {self._damage}")
     self._stats_requierments.show(output)
+
+  def __str__(self):
+    return self.name
 
 class Armor(Equipment):
   def __init__(self, name, price, armor, stats_requirements):
@@ -58,7 +61,7 @@ class Armor(Equipment):
       output.out(f"Вы экипировали {self._name}")
 
   def show(self, output, index = ""):
-    output.out(f"{index}. {self._name}")    
-    output.out(f"Стоимость {self._price}")    
-    output.out(f"Броня {self._armor}")   
+    output.out(f"{index}. {self._name}")
+    output.out(f"Стоимость {self._price}")
+    output.out(f"Броня {self._armor}")
     self._stats_requierments.show(output)

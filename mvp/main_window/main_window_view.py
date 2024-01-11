@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from components.inventory_component import InventoryComponent
 
 from entities.creature import Creature
 

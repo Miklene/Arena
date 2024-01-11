@@ -20,7 +20,7 @@ class InventoryComponent(Component):
 
   @property
   def equipment(self):
-    return self._equipment
+    return self._sections
 
   def addEquipment(self, equipment):
     if not self.addEquipmentToSection(equipment):
@@ -85,6 +85,9 @@ class InventorySection:
   def getEquipmentByIndex(self, index):
     if self.isEquipmentExist(index):
       return self._items[index]
+
+  def len(self):
+    return len(self._items)
 
   @property
   def name(self):

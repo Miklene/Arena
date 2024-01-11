@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
+from components.inventory_component import InventoryComponent
+
 
 class GameWindowView(metaclass = ABCMeta):
 
@@ -20,4 +22,8 @@ class GameWindowView(metaclass = ABCMeta):
 
     @abstractmethod
     def add_variant(self, variant: str, id: int) -> None:
+        pass
+
+    @abstractmethod
+    def show_inventory(self, inventory: InventoryComponent) -> None:
         pass

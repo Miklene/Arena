@@ -79,7 +79,12 @@ class GameWindowPresenter:
         pass
 
     def button_equipment_clicked(self):
-        pass
+        inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+        sections = inventory.equipment
+        for section in sections:
+            print(section.name)
+            for i in range(section.len()):
+                print(section.getEquipmentByIndex(i))
 
     def variant_clicked(self, id: int):
         variant = self.__current_variatns.get(id)

@@ -1,10 +1,13 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QColor
+from components.inventory_component import InventoryComponent
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
 from mvp.game_window.game_window_meta import GameWindowMeta
 from mvp.game_window.game_window_presenter import GameWindowPresenter
 from mvp.game_window.game_window_view import GameWindowView
+from mvp.inventory_widget.inventory_widget_logic import InventoryWidgetLogic
+from mvp.main_window.main_window_view import MainWindowView
 
 class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
 
@@ -13,6 +16,8 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.ui = Ui_GameWidget()
         self.ui.setupUi(self)
         self.show()
+
+        self.__parent: MainWindowView = parent
 
         self.__variants: dict[QPushButton, int] = {}
 
@@ -49,3 +54,6 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         sender = self.sender()
         id = self.__variants.get(sender)
         self.__presenter.variant_clicked(id)
+
+    def show_inventory(self, inventory: InventoryComponent) -> None:
+        self.ui.widget_container.addWidget(InventoryWidgetLogic(inventory, self))

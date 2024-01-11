@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>636</width>
+    <width>598</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Игра</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="2">
+    <layout class="QVBoxLayout" name="layout_choice_buttons"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPlainTextEdit" name="log"/>
+   </item>
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -53,10 +59,7 @@
     </layout>
    </item>
    <item row="0" column="1">
-    <widget class="QPlainTextEdit" name="log"/>
-   </item>
-   <item row="1" column="1">
-    <layout class="QVBoxLayout" name="layout_choice_buttons"/>
+    <layout class="QVBoxLayout" name="widget_container"/>
    </item>
   </layout>
  </widget>
