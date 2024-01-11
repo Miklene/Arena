@@ -11,6 +11,9 @@ class GameWindowView(metaclass = ABCMeta):
     def insert_text_to_log(self, text: str) -> None:
         pass
 
+    def set_log_text_color(self, text_color) -> None :
+        pass
+
     @abstractmethod
     def clear_variants(self) -> None:
         pass

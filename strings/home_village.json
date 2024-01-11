@@ -1,0 +1,27 @@
+{
+    "messages":
+    [
+        {
+            "id": 0,
+            "text": "Вы находитесь в деревне Сараево. ",
+            "location": "Деревня Сараево",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Проведать мать",
+                    "log_text": "Вы пошли в поле.",
+                    "next_message_id" : 1,
+                    "next_message_file" : "strings/home_village.json"
+                },
+                {
+                    "id": 1,
+                    "text": "Проведать отца",
+                    "log_text": "Вы пошли к лесосеке.",
+                    "next_message_id" : 0,
+                    "next_message_file" : "strings/father_dialog.json"
+                }
+            ]
+        }
+    ]
+}

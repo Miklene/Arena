@@ -1,0 +1,24 @@
+{
+    "weapons":[
+        {
+            "id": 0,
+            "name": "Топор дровосека",
+            "color": 8421504,
+            "type": "TWO_HANDED",
+            "damage": 10,
+            "price": 3,
+            "strength": 5,
+            "agility": 5
+        },
+        {
+            "id": 1,
+            "name": "Серп",
+            "color": 8421504,
+            "type": "ONE_HANDED",
+            "damage": 6,
+            "price": 2,
+            "strength": 5,
+            "agility": 5
+        }
+    ]
+}

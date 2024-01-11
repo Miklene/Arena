@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QColor
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
 from mvp.game_window.game_window_meta import GameWindowMeta
@@ -22,8 +23,14 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.ui.button_equipment.clicked.connect(self.__presenter.button_equipment_clicked)
 
 
+
     def add_text_to_log(self, text: str) -> None:
         self.ui.log.appendPlainText(text)
+
+    def set_log_text_color(self, text_color) -> None :
+        text_char_format = self.ui.log.currentCharFormat()
+        text_char_format.setForeground(text_color)
+        self.ui.log.setCurrentCharFormat(text_char_format)
 
     def insert_text_to_log(self, text: str) -> None:
         self.ui.log.insertPlainText(text)
@@ -35,7 +42,6 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
     def add_variant(self, variant: str, id: int) -> None:
         button:QPushButton = QPushButton(variant, self)
         button.clicked.connect(self.variant_clicked)
-
         self.__variants[button] = id
         self.ui.layout_choice_buttons.addWidget(button)
 

@@ -1,0 +1,85 @@
+{
+    "messages":
+    [
+        {
+            "id": 0,
+            "text": "Вы видите отца возле домика лесорубов. Он готовится пойти в лес.\nЗавидев вас, он приветственно машет вам рукой.",
+            "location": "Лесосека Сараево",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 1,
+                    "next_message_file" : "strings/father_dialog.json"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "author": "Отец: ",
+            "text": "Я иду в лес. Ты со мной?",
+            "location": "Лесосека Сараево",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Да",
+                    "log_author": "Вы: ",
+                    "log_text": "Да.",
+                    "next_message_id" : 2,
+                    "next_message_file" : "strings/father_dialog.json"
+                },
+                {
+                    "id": 1,
+                    "text": "Нет, я просто пришел проведать тебя.",
+                    "log_author": "Вы: ",
+                    "log_text": "Нет, я просто пришел проведать тебя.",
+                    "next_message_id" : 3,
+                    "next_message_file" : "strings/father_dialog.json"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "author": "Отец: ",
+            "text": "Хорошо, возьми этот топор, он тебе понадобится. Скоро выдвигаемся.",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "REWARD",
+                    "file": "strings/weapons.json",
+                    "id": 0
+                }
+            ],
+            "location": "Лесосека Сараево",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Подождать, пока отец соберется.",
+                    "log_text": "",
+                    "next_message_id" : 3,
+                    "next_message_file" : "strings/father_dialog.json"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Вы пошли на лесосеку",
+            "location": "Лесосека Сараево",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Подождать, пока отец соберется.",
+                    "log_text": "",
+                    "next_message_id" : 3,
+                    "next_message_file" : "strings/father_dialog.json"
+                }
+            ]
+        }
+
+    ]
+}

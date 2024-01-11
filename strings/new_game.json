@@ -1,0 +1,263 @@
+{
+    "messages":
+    [
+        {
+            "id": 0,
+            "text": "Вы сын крестьянина. Ваша семья живет в небольшой деревушке Сараево королества Рассея. Вы единственный ребенок в семье.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 1,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+
+        {
+            "id": 1,
+            "text": "В детстве вы ",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "любили плотно покушать (Телосложение + 1).",
+                    "log_text": "любили плотно покушать (Телосложение + 1).",
+                    "next_message_id" : 2,
+                    "next_message_file" : "strings/new_game.json"
+                },
+                {
+                    "id": 1,
+                    "text": "любили играть в царь горы с другими детьми (Сила + 1).",
+                    "log_text": "любили играть в царь горы с другими детьми (Сила + 1).",
+                    "next_message_id" : 3,
+                    "next_message_file" : "strings/new_game.json"
+                },
+                {
+                    "id": 2,
+                    "text": "любили лазать по чужим огородам (Ловкость + 1).",
+                    "log_text": "любили лазать по чужим огородам (Ловкость + 1).",
+                    "next_message_id" : 4,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "text": "С таким аппетитом вы росли крупнее своих сверстников.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 5,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Активные игры сделали вас сильнее.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 5,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Лазание по чужим садам сделало вас главным хулиганом деревни.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 5,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+
+        {
+            "id": 5,
+            "text": "В юности вы: ",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "помогали матери в поле (Телосложение +2).",
+                    "log_text": "помогали матери в поле (Телосложение +2).",
+                    "next_message_id" : 6,
+                    "next_message_file" : "strings/new_game.json"
+                },
+                {
+                    "id": 1,
+                    "text": "рубили лес с отцом (Сила +2).",
+                    "log_text": "рубили лес с отцом (Сила +2).",
+                    "next_message_id" : 7,
+                    "next_message_file" : "strings/new_game.json"
+                },
+                {
+                    "id": 2,
+                    "text": "занимались паркуром по крышам сараев (Ловкость +2).",
+                    "log_text": "занимались паркуром по крышам сараев (Ловкость +2).",
+                    "next_message_id" : 8,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "text": "Тяжелый труд в поле сделал вас выносливее.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 9,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "text": "Орудуя топором вы научились вкладывать всю силу в удар.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 9,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "text": "Такие пируэты не мог повторить никто. Ребятня восхищалась вами, а взрослые порицали ваше увлечение.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 9,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+
+
+        {
+            "id": 9,
+            "text": "Повзрослев вы: ",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "продолжили помогать родителям по хозяйству (Двуручное оружие +1).",
+                    "log_text": "продолжили помогать родителям по хозяйству (Двуручное оружие +1).",
+                    "next_message_id" : 10,
+                    "next_message_file" : "strings/new_game.json"
+                },
+                {
+                    "id": 1,
+                    "text": "стали оруженосцем владельца поместия (Одноручное оружие +1).",
+                    "log_text": "стали оруженосцем владельца поместия (Одноручное оружие +1).",
+                    "next_message_id" : 11,
+                    "next_message_file" : "strings/new_game.json"
+                }
+                ,
+                {
+                    "id": 2,
+                    "text": "пошли в подмастерье к охотнику (Лук + 1).",
+                    "log_text": "пошли в подмастерье к охотнику (Лук + 1).",
+                    "next_message_id" : 12,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "text": "Работа с вилами и топором научила вас обращаться с простым двуручным оружием.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 13,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "text": "Ваш господин научил вас азам фехтования.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 13,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "text": "Охотник научил вас, как обращаться с луком.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 13,
+                    "next_message_file" : "strings/new_game.json"
+                }
+            ]
+        },
+
+        {
+            "id": 13,
+            "text": "Став взрослым, вы остались с родителями, чтобы помочь им. Ведь кроме вас, у них никого нет. Отсюда и начинается ваша история.\nВы проснулись рано утром. Родители уже встали и ушли работать. Позавтракав, вы вышли во двор.",
+            "location": "",
+            "variants":
+            [
+                {
+                    "id": 0,
+                    "text": "Далее",
+                    "log_text": "",
+                    "next_message_id" : 0,
+                    "next_message_file" : "strings/home_village.json"
+                }
+            ]
+        }
+    ]
+}
