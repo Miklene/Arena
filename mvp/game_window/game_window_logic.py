@@ -56,4 +56,9 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__presenter.variant_clicked(id)
 
     def show_inventory(self, inventory: InventoryComponent) -> None:
-        self.ui.widget_container.addWidget(InventoryWidgetLogic(inventory, self))
+        self.__inventory_widget = InventoryWidgetLogic(inventory, self)
+        self.ui.widget_container.addWidget(self.__inventory_widget)
+
+    def hide_inventory(self) -> None:
+        if self.__inventory_widget is not None:
+            self.__inventory_widget.setParent(None)

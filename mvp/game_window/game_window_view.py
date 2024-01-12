@@ -27,3 +27,7 @@ class GameWindowView(metaclass = ABCMeta):
     @abstractmethod
     def show_inventory(self, inventory: InventoryComponent) -> None:
         pass
+
+    @abstractmethod
+    def hide_inventory(self) -> None:
+        pass

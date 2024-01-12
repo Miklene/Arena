@@ -10,9 +10,11 @@ from stats_requirements import WeaponStatsRequirmentsComponent
 from components.components_enum import ComponentsEnum
 
 class GameWindowPresenter:
+
     SELF_COLOR = QColor(0x0000FF)
     OPPONENT_COLOR = QColor(0x009900)
     BASIC_COLOR = QColor(0x000000)
+
     def __init__(self, view, player: Creature):
         self.__view: GameWindowView = view
         self.__player: Creature = player
@@ -23,6 +25,7 @@ class GameWindowPresenter:
 
         self.read_new_message_file()
         self.__print_message()
+        self.__equipment_visible = False
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:
@@ -79,13 +82,13 @@ class GameWindowPresenter:
         pass
 
     def button_equipment_clicked(self):
-        inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
-        self.__view.show_inventory(inventory)
-        sections = inventory.equipment
-        for section in sections:
-            print(section.name)
-            for i in range(section.len()):
-                print(section.getEquipmentByIndex(i))
+        if not self.__equipment_visible:
+            self.__equipment_visible = True
+            inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+            self.__view.show_inventory(inventory)
+        else:
+            self.__equipment_visible = False
+            self.__view.hide_inventory()
 
     def variant_clicked(self, id: int):
         variant = self.__current_variatns.get(id)

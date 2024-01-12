@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>436</width>
+    <height>449</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,15 +15,40 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Инвентарь</string>
+    <widget class="QTabWidget" name="tab_widget_weapon">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QListWidget" name="listWidget"/>
-      </item>
-     </layout>
+     <widget class="QWidget" name="tab_weapon">
+      <attribute name="title">
+       <string>Оружие</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QListWidget" name="list_widget_weapon"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_armor">
+      <attribute name="title">
+       <string>Броня</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QListWidget" name="list_widget_armor"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_food">
+      <attribute name="title">
+       <string>Еда</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QListWidget" name="list_widget_food"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
