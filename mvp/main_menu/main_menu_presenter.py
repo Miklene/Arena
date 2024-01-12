@@ -16,7 +16,7 @@ class MainMenuPresenter:
     def button_new_game_clicked(self):
         stats = FighterStatsComponent(5, 5, 5)
         player:Creature = Creature(stats)
-        player.addComponent(LevelComponent(stats=stats))
+        player.addComponent(LevelComponent(stats=stats, initial_points=0))
         #player.addComponent(NameComponent(self.__player_name))
         player.addComponent(FighterParametersComponent(stats))
         player.addComponent(InventoryComponent())

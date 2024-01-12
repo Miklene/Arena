@@ -26,6 +26,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__stats_widget = None
         self.__inventory_widget = None
 
+        self.ui.log.setReadOnly(True)
         self.__presenter: GameWindowPresenter = GameWindowPresenter(view=self, player=player)
 
         self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)

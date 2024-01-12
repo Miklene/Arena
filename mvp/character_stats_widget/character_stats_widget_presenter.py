@@ -1,4 +1,5 @@
 from components.components_enum import ComponentsEnum
+from components.level_component import LevelComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from mvp.character_stats_widget.character_stats_widget_view import CharacterStatsWidgetView
@@ -14,7 +15,8 @@ class CharacterStatsWidgetPresenter:
         self.__strength = self.__stats.strength
         self.__agility = self.__stats.agility
 
-        self.__points = 10
+        self.__level: LevelComponent = self.__player.getComponent(ComponentsEnum.LEVEL)
+        self.__points = self.__level.points
 
         self.__view.set_button_physique_decrease_activity(False)
         self.__view.set_button_strength_decrease_activity(False)

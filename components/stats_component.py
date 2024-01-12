@@ -50,15 +50,15 @@ class FighterStatsComponent(StatsComponent):
 
   def increasePhysique(self, value):
     self._physique += value
-    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+    #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   def increaseStrength(self, value):
     self._strength += value
-    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+    #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   def increaseAgility(self, value):
     self._agility += value
-    ServiceObjects().game.player.send(UpdateParameterspMessage(None))
+    #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   @property
   def physique(self):

@@ -26,7 +26,7 @@
                 {
                     "id": 0,
                     "text": "любили плотно покушать (Телосложение + 1).",
-                    "log_text": "любили плотно покушать (Телосложение + 1).",
+                    "log_text": "любили плотно покушать.",
                     "next_message_id" : 2,
                     "next_message_file" : "strings/new_game.json"
                 },
@@ -49,6 +49,15 @@
         {
             "id": 2,
             "text": "С таким аппетитом вы росли крупнее своих сверстников.",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 1,
+                    "id": 0
+                }
+            ],
             "location": "",
             "variants":
             [
@@ -64,6 +73,15 @@
         {
             "id": 3,
             "text": "Активные игры сделали вас сильнее.",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 1,
+                    "id": 1
+                }
+            ],
             "location": "",
             "variants":
             [
@@ -79,6 +97,15 @@
         {
             "id": 4,
             "text": "Лазание по чужим садам сделало вас главным хулиганом деревни.",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 1,
+                    "id": 2
+                }
+            ],
             "location": "",
             "variants":
             [
@@ -101,21 +128,21 @@
                 {
                     "id": 0,
                     "text": "помогали матери в поле (Телосложение +2).",
-                    "log_text": "помогали матери в поле (Телосложение +2).",
+                    "log_text": "помогали матери в поле.",
                     "next_message_id" : 6,
                     "next_message_file" : "strings/new_game.json"
                 },
                 {
                     "id": 1,
                     "text": "рубили лес с отцом (Сила +2).",
-                    "log_text": "рубили лес с отцом (Сила +2).",
+                    "log_text": "рубили лес с отцом.",
                     "next_message_id" : 7,
                     "next_message_file" : "strings/new_game.json"
                 },
                 {
                     "id": 2,
                     "text": "занимались паркуром по крышам сараев (Ловкость +2).",
-                    "log_text": "занимались паркуром по крышам сараев (Ловкость +2).",
+                    "log_text": "занимались паркуром по крышам сараев.",
                     "next_message_id" : 8,
                     "next_message_file" : "strings/new_game.json"
                 }
@@ -125,6 +152,15 @@
             "id": 6,
             "text": "Тяжелый труд в поле сделал вас выносливее.",
             "location": "",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 2,
+                    "id": 0
+                }
+            ],
             "variants":
             [
                 {
@@ -140,6 +176,15 @@
             "id": 7,
             "text": "Орудуя топором вы научились вкладывать всю силу в удар.",
             "location": "",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 2,
+                    "id": 1
+                }
+            ],
             "variants":
             [
                 {
@@ -155,6 +200,15 @@
             "id": 8,
             "text": "Такие пируэты не мог повторить никто. Ребятня восхищалась вами, а взрослые порицали ваше увлечение.",
             "location": "",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "STATS",
+                    "file": "strings/stats.json",
+                    "amount": 2,
+                    "id": 2
+                }
+            ],
             "variants":
             [
                 {
@@ -177,14 +231,14 @@
                 {
                     "id": 0,
                     "text": "продолжили помогать родителям по хозяйству (Двуручное оружие +1).",
-                    "log_text": "продолжили помогать родителям по хозяйству (Двуручное оружие +1).",
+                    "log_text": "продолжили помогать родителям по хозяйству.",
                     "next_message_id" : 10,
                     "next_message_file" : "strings/new_game.json"
                 },
                 {
                     "id": 1,
                     "text": "стали оруженосцем владельца поместия (Одноручное оружие +1).",
-                    "log_text": "стали оруженосцем владельца поместия (Одноручное оружие +1).",
+                    "log_text": "стали оруженосцем владельца поместия.",
                     "next_message_id" : 11,
                     "next_message_file" : "strings/new_game.json"
                 }
@@ -192,7 +246,7 @@
                 {
                     "id": 2,
                     "text": "пошли в подмастерье к охотнику (Лук + 1).",
-                    "log_text": "пошли в подмастерье к охотнику (Лук + 1).",
+                    "log_text": "пошли в подмастерье к охотнику.",
                     "next_message_id" : 12,
                     "next_message_file" : "strings/new_game.json"
                 }

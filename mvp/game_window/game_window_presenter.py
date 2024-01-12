@@ -1,5 +1,7 @@
 from contextlib import suppress
 from components.inventory_component import InventoryComponent
+from components.parameters_component import FighterParametersComponent
+from components.stats_component import FighterStatsComponent, StatsComponent
 from entities.creature import Creature
 from PyQt5.QtGui import QColor
 from mvp.game_window.game_window_view import GameWindowView
@@ -64,6 +66,28 @@ class GameWindowPresenter:
                                         self.__view.insert_text_to_log(weapon.name)
                                         inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
                                         inventory.addEquipment(weapon)
+                                        break
+                        if action['type'] == 'STATS':
+                            reward_file = action['file']
+                            reward_id = action['id']
+                            with open(reward_file, encoding='utf-8') as json_file:
+                                json_content = json_file.read()
+                                parsed_json = json.loads(json_content)
+                                stats = parsed_json['stats']
+                                for item in stats:
+                                    if item['id'] == reward_id:
+                                        text = item['name']
+                                        self.__view.insert_text_to_log(text)
+                                        amount = " + " + str(action['amount'])
+                                        self.__view.insert_text_to_log(amount)
+                                        stats: FighterStatsComponent = self.__player.getComponent(ComponentsEnum.STATS)
+                                        if item['id'] == 0:
+                                            stats.increasePhysique(action['amount'])
+                                        if item['id'] == 1:
+                                            stats.increaseStrength(action['amount'])
+                                        if item['id'] == 2:
+                                            stats.increaseAgility(action['amount'])
+                                        break
                 self.__add_variants(message)
 
 
