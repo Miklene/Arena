@@ -40,6 +40,15 @@ class ParametersComponent(Component):
   def update(self):
     pass
 
+  def get_hint_for_physique(self):
+    return f"Одно очко телосложения равно {self.HP_PER_PHYSIQUE} очкам здоровья"
+
+  def get_hint_for_strength(self):
+    return f"Одно очко силы равно {self.DAMAGE_PER_STRENGTH} единицам урона"
+
+  def get_hint_for_agility(self):
+    return f"Одно очко ловкости равно {self.SPEED_PER_AGILITY} скорости атаки"
+
   def showParametersPerStats(self):
     message = f"Одно очко телосложения равно {self.HP_PER_PHYSIQUE} очкам здоровья"
     message += f"\nОдно очко силы равно {self.DAMAGE_PER_STRENGTH} единицам урона"

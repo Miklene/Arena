@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.Qt import *
+from components.components_enum import ComponentsEnum
+from components.parameters_component import FighterParametersComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from gui.character_stats import Ui_CharacterStatsWidget
@@ -20,6 +22,10 @@ class CharacterStatsWidgetLogic(QWidget, CharacterStatsWidgetView, metaclass = M
         self.ui.setupUi(self)
 
         self.__presenter = CharacterStatsWidgetPresenter(self, player)
+        parameters:FighterParametersComponent = player.getComponent(ComponentsEnum.PARAMETERS)
+        self.ui.label_physique.setToolTip(parameters.get_hint_for_physique())
+        self.ui.label_strength.setToolTip(parameters.get_hint_for_strength())
+        self.ui.label_agility.setToolTip(parameters.get_hint_for_agility())
 
         self.ui.button_physique_increase.clicked.connect(self.__presenter.button_physique_increase_clicked)
         self.ui.button_physique_decrease.clicked.connect(self.__presenter.button_physique_decrease_clicked)

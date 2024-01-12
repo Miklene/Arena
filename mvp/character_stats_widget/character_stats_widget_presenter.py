@@ -18,6 +18,11 @@ class CharacterStatsWidgetPresenter:
         self.__level: LevelComponent = self.__player.getComponent(ComponentsEnum.LEVEL)
         self.__points = self.__level.points
 
+        if self.__points == 0:
+            self.__view.set_button_physique_increase_activity(False)
+            self.__view.set_button_strength_increase_activity(False)
+            self.__view.set_button_agility_increase_activity(False)
+
         self.__view.set_button_physique_decrease_activity(False)
         self.__view.set_button_strength_decrease_activity(False)
         self.__view.set_button_agility_decrease_activity(False)
