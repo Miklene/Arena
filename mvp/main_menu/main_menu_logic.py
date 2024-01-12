@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from entities.creature import Creature
 from gui.main_menu import Ui_MainMenu
 from mvp.main_menu.main_menu_presenter import MainMenuPresenter
 
@@ -23,3 +24,6 @@ class MainMenuLogic(QWidget, MainMenuView, metaclass=MainMenuMeta):
 
     def show_new_game_menu(self) -> None:
         self.__parent.show_new_game_menu()
+
+    def start_new_game(self, player:Creature) -> None:
+        self.__parent.start_new_game(player)

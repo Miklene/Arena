@@ -11,4 +11,6 @@ class MainMenuView(metaclass=ABCMeta):
     def show_new_game_menu(self) -> None:
         pass
 
-
+    @abstractmethod
+    def start_new_game(self) -> None:
+        pass
