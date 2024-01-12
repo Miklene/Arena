@@ -5,6 +5,7 @@ from components.parameters_component import *
 from components.inventory_component import *
 from entities.creature import Creature
 from mvp.new_game_widget.new_game_widget_view import NewGameWidgetView
+from stats_requirements import WeaponStatsRequirmentsComponent
 
 
 class NewGameWidgetPresenter:
@@ -20,6 +21,8 @@ class NewGameWidgetPresenter:
             player.addComponent(NameComponent(self.__player_name))
             player.addComponent(FighterParametersComponent(stats))
             player.addComponent(InventoryComponent())
+            inventory: InventoryComponent = player.getComponent(ComponentsEnum.INVENTORY)
+            inventory.addEquipment(Weapon("Серп", 2, 6, WeaponStatsRequirmentsComponent(4,4)))
             self.__view.start_new_game(player)
 
     def line_edit_text_changed(self, text: str) -> None:

@@ -1,6 +1,8 @@
 from entities.entity import Entity
 from abc import abstractmethod
 
+from stats_requirements import WeaponStatsRequirmentsComponent
+
 class Equipment(Entity):
   def __init__(self, name, price, stats_requirements):
     self._id = 0
@@ -34,7 +36,7 @@ class Equipment(Entity):
 
 
 class Weapon(Equipment):
-  def __init__(self, name, price, damage, stats_requirements):
+  def __init__(self, name, price, damage, stats_requirements: WeaponStatsRequirmentsComponent):
     super().__init__(name, price, stats_requirements)
     self._damage = damage
 
@@ -47,6 +49,14 @@ class Weapon(Equipment):
     output.out(f"Стоимость {self._price}")
     output.out(f"Урон {self._damage}")
     self._stats_requierments.show(output)
+
+  @property
+  def damage(self):
+    return self._damage
+
+  @property
+  def stats_requierments(self) -> WeaponStatsRequirmentsComponent:
+    return self._stats_requierments
 
   def __str__(self):
     return self.name

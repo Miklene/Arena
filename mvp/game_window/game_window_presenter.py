@@ -80,6 +80,7 @@ class GameWindowPresenter:
 
     def button_equipment_clicked(self):
         inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+        self.__view.show_inventory(inventory)
         sections = inventory.equipment
         for section in sections:
             print(section.name)

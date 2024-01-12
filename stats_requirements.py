@@ -8,7 +8,7 @@ class StatsRequirementsComponent(ABC):
     pass
 
 class WeaponStatsRequirmentsComponent(StatsRequirementsComponent):
-  
+
   def __init__(self, strength_req, agility_req):
     self._strength_req = strength_req
     self._agility_req = agility_req
@@ -26,6 +26,14 @@ class WeaponStatsRequirmentsComponent(StatsRequirementsComponent):
   def show(self, output):
     output.out(f"Необходимо силы: {self._strength_req}")
     output.out(f"Необходимо ловкости: {self._agility_req}")
+
+  @property
+  def strength_req(self):
+    return self._strength_req
+
+  @property
+  def agility_req(self):
+    return self._agility_req
 
 class ArmorStatsRequirmentsComponent(StatsRequirementsComponent):
 

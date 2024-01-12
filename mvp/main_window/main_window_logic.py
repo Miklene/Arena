@@ -18,7 +18,6 @@ class MainWindowLogic(QMainWindow, MainWindowView, metaclass=MainMenuMeta):
         self.__current_widget = None
         self.__set_new_widget(MainMenuLogic(self))
 
-
     def show_new_game_menu(self) -> None:
         self.__set_new_widget(NewGameWidgetLogic(self))
 

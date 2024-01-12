@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>419</width>
-    <height>146</height>
+    <width>259</width>
+    <height>128</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -30,14 +30,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>128</width>
-       <height>128</height>
+       <width>64</width>
+       <height>64</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>128</width>
-       <height>128</height>
+       <width>64</width>
+       <height>64</height>
       </size>
      </property>
      <property name="frameShape">
@@ -51,7 +51,7 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="4" column="1">
-      <widget class="QLabel" name="label_agility_level">
+      <widget class="QLabel" name="label_agility_value">
        <property name="text">
         <string>0</string>
        </property>
@@ -71,7 +71,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="label__damage_value">
+      <widget class="QLabel" name="label_damage_value">
        <property name="text">
         <string>0</string>
        </property>
@@ -128,14 +128,14 @@
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_cost">
+      <widget class="QLabel" name="label_price">
        <property name="text">
         <string>Стоимость:</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLabel" name="label_price">
+      <widget class="QLabel" name="label_price_value">
        <property name="text">
         <string>0</string>
        </property>
