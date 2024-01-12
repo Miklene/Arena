@@ -3,13 +3,15 @@ from components.level_component import LevelComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from mvp.character_stats_widget.character_stats_widget_view import CharacterStatsWidgetView
+from components.stats_component import StatsObserver
 
-
-class CharacterStatsWidgetPresenter:
+class CharacterStatsWidgetPresenter(StatsObserver):
     def __init__(self, view: CharacterStatsWidgetView, player: Creature):
         self.__view = view
         self.__player = player
-        self.__stats = self.__player.getComponent(ComponentsEnum.STATS)
+        self.__stats: FighterStatsComponent = self.__player.getComponent(ComponentsEnum.STATS)
+
+        self.__stats.addObserver(self)
 
         self.__physique = self.__stats.physique
         self.__strength = self.__stats.strength
@@ -33,6 +35,15 @@ class CharacterStatsWidgetPresenter:
 
         self.__view.set_label_points_value_text(str(self.__points))
 
+
+    def update(self):
+        self.__physique = self.__stats.physique
+        self.__strength = self.__stats.strength
+        self.__agility = self.__stats.agility
+
+        self.__view.set_label_physique_level_text(str(self.__physique))
+        self.__view.set_label_strength_level_text(str(self.__strength))
+        self.__view.set_label_agility_level_text(str(self.__agility))
 
     def button_physique_increase_clicked(self):
         if self.__points > 0:

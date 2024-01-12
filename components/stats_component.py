@@ -1,4 +1,5 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
+from contextlib import suppress
 from enum import Enum
 
 from components.component import Component
@@ -8,9 +9,37 @@ from messages.message_code import MessageCode
 from service_objects import ServiceObjects
 
 
-class StatsComponent(Component):
+class StatsObserver(ABC):
   def __init__(self):
-    super().__init__(ComponentsEnum.STATS)
+    super().__init__()
+    pass
+
+  @abstractmethod
+  def update(self):
+    pass
+
+
+class StatsObservable:
+  def __init__(self):
+    self._observers: list[StatsObserver]= []
+
+  def addObserver(self, observer: StatsObserver):
+    self._observers.append(observer)
+    observer.update()
+
+  def notifyUpdate(self):
+    for observer in self._observers:
+      observer.update()
+
+  def removeObserver(self, observer):
+    with suppress(ValueError):
+      self._observers.remove(observer)
+
+
+class StatsComponent(Component, StatsObservable):
+  def __init__(self):
+    Component.__init__(self, ComponentsEnum.STATS)
+    StatsObservable.__init__(self)
 
   @abstractmethod
   def getDescription(self):
@@ -50,14 +79,17 @@ class FighterStatsComponent(StatsComponent):
 
   def increasePhysique(self, value):
     self._physique += value
+    self.notifyUpdate()
     #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   def increaseStrength(self, value):
     self._strength += value
+    self.notifyUpdate()
     #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   def increaseAgility(self, value):
     self._agility += value
+    self.notifyUpdate()
     #ServiceObjects().game.player.send(UpdateParameterspMessage(None))
 
   @property
