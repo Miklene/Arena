@@ -1,8 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QColor
 from components.inventory_component import InventoryComponent
+from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
+from mvp.character_stats_widget.character_stats_widget_logic import CharacterStatsWidgetLogic
 from mvp.game_window.game_window_meta import GameWindowMeta
 from mvp.game_window.game_window_presenter import GameWindowPresenter
 from mvp.game_window.game_window_view import GameWindowView
@@ -20,6 +22,9 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__parent: MainWindowView = parent
 
         self.__variants: dict[QPushButton, int] = {}
+
+        self.__stats_widget = None
+        self.__inventory_widget = None
 
         self.__presenter: GameWindowPresenter = GameWindowPresenter(view=self, player=player)
 
@@ -56,9 +61,19 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__presenter.variant_clicked(id)
 
     def show_inventory(self, inventory: InventoryComponent) -> None:
+        #self.hide_stats()
         self.__inventory_widget = InventoryWidgetLogic(inventory, self)
         self.ui.widget_container.addWidget(self.__inventory_widget)
 
     def hide_inventory(self) -> None:
         if self.__inventory_widget is not None:
             self.__inventory_widget.setParent(None)
+
+    def show_stats(self, player: Creature) -> None:
+        #self.hide_inventory()
+        self.__stats_widget = CharacterStatsWidgetLogic(player, self)
+        self.ui.widget_container.addWidget(self.__stats_widget)
+
+    def hide_stats(self) -> None:
+        if self.__stats_widget is not None:
+            self.__stats_widget.setParent(None)

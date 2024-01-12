@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 from components.inventory_component import InventoryComponent
+from entities.creature import Creature
 
 
 class GameWindowView(metaclass = ABCMeta):
@@ -30,4 +31,12 @@ class GameWindowView(metaclass = ABCMeta):
 
     @abstractmethod
     def hide_inventory(self) -> None:
+        pass
+
+    @abstractmethod
+    def show_stats(self, player: Creature) -> None:
+        pass
+
+    @abstractmethod
+    def hide_stats(self) -> None:
         pass

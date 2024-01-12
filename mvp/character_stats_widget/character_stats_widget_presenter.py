@@ -1,11 +1,14 @@
+from components.components_enum import ComponentsEnum
 from components.stats_component import FighterStatsComponent
+from entities.creature import Creature
 from mvp.character_stats_widget.character_stats_widget_view import CharacterStatsWidgetView
 
 
 class CharacterStatsWidgetPresenter:
-    def __init__(self, view: CharacterStatsWidgetView):
+    def __init__(self, view: CharacterStatsWidgetView, player: Creature):
         self.__view = view
-        self.__stats = FighterStatsComponent(5,5,5)
+        self.__player = player
+        self.__stats = self.__player.getComponent(ComponentsEnum.STATS)
 
         self.__physique = self.__stats.physique
         self.__strength = self.__stats.strength

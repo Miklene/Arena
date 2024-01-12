@@ -26,6 +26,7 @@ class GameWindowPresenter:
         self.read_new_message_file()
         self.__print_message()
         self.__equipment_visible = False
+        self.__stats_visible = False
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:
@@ -76,7 +77,14 @@ class GameWindowPresenter:
         #    self.__current_variatns[int(variant.get('id'))] = variant
 
     def button_stats_clicked(self):
-        pass
+        if not self.__stats_visible:
+            self.__stats_visible = True
+            self.__equipment_visible = False
+            self.__view.hide_inventory()
+            self.__view.show_stats(self.__player)
+        else:
+            self.__stats_visible = False
+            self.__view.hide_stats()
 
     def button_abilities_clicked(self):
         pass
@@ -84,6 +92,8 @@ class GameWindowPresenter:
     def button_equipment_clicked(self):
         if not self.__equipment_visible:
             self.__equipment_visible = True
+            self.__stats_visible = False
+            self.__view.hide_stats()
             inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
             self.__view.show_inventory(inventory)
         else:

@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.Qt import *
+from components.stats_component import FighterStatsComponent
+from entities.creature import Creature
 from gui.character_stats import Ui_CharacterStatsWidget
 from mvp.character_stats_widget.character_stats_widget_presenter import CharacterStatsWidgetPresenter
 from mvp.character_stats_widget.character_stats_widget_view import CharacterStatsWidgetView
@@ -11,13 +13,13 @@ from mvp.character_stats_widget.stats_signals import *
 
 class CharacterStatsWidgetLogic(QWidget, CharacterStatsWidgetView, metaclass = MainMenuMeta):
 
-    def __init__(self, parent: QWidget = None) -> None:
+    def __init__(self, player: Creature, parent: QWidget = None) -> None:
         super(CharacterStatsWidgetLogic, self).__init__(parent)
         self.__parent = parent
         self.ui = Ui_CharacterStatsWidget()
         self.ui.setupUi(self)
 
-        self.__presenter = CharacterStatsWidgetPresenter(self)
+        self.__presenter = CharacterStatsWidgetPresenter(self, player)
 
         self.ui.button_physique_increase.clicked.connect(self.__presenter.button_physique_increase_clicked)
         self.ui.button_physique_decrease.clicked.connect(self.__presenter.button_physique_decrease_clicked)

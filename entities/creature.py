@@ -16,6 +16,7 @@ class Creature(Entity, Fightable):
   def __init__(self, stats):
     super().__init__()
     self._stats = stats
+    self.addComponent(self._stats)
     #self.addComponent(self._stats)
     #self._level = LevelComponent(self._stats)
     #self.addComponent(self._level)
