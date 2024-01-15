@@ -27,3 +27,7 @@ class Location:
     @nearest_locations.setter
     def nearest_locations(self, locations):
         self.__nearest_locations = locations
+
+    @persons.setter
+    def persons(self, persons):
+        self.__persons = persons

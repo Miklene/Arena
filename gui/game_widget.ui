@@ -200,7 +200,7 @@
            <number>5</number>
           </property>
           <item>
-           <widget class="QListWidget" name="listWidget">
+           <widget class="QListWidget" name="list_persons">
             <property name="minimumSize">
              <size>
               <width>80</width>

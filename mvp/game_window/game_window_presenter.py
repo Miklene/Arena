@@ -32,6 +32,9 @@ class GameWindowPresenter:
         self.__stats_visible = False
 
         world = World()
+        world.current_location = "village_saraevo"
+        self.__view.set_locations_to_list(world.current_location.nearest_locations)
+        self.__view.set_persons_to_list(world.current_location.persons)
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:

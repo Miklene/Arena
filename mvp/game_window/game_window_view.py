@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 
 from components.inventory_component import InventoryComponent
 from entities.creature import Creature
+from world.location import Location
+from world.npc import Npc
 
 
 class GameWindowView(metaclass = ABCMeta):
@@ -39,4 +41,12 @@ class GameWindowView(metaclass = ABCMeta):
 
     @abstractmethod
     def hide_stats(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_locations_to_list(self, locations: list[Location]) -> None:
+        pass
+
+    @abstractmethod
+    def set_persons_to_list(self, persons: list[Npc]) -> None:
         pass

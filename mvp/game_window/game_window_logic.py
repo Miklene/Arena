@@ -10,6 +10,8 @@ from mvp.game_window.game_window_presenter import GameWindowPresenter
 from mvp.game_window.game_window_view import GameWindowView
 from mvp.inventory_widget.inventory_widget_logic import InventoryWidgetLogic
 from mvp.main_window.main_window_view import MainWindowView
+from world.location import Location
+from world.npc import Npc
 
 class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
 
@@ -27,6 +29,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__inventory_widget = None
 
         self.ui.log.setReadOnly(True)
+
         self.__presenter: GameWindowPresenter = GameWindowPresenter(view=self, player=player)
 
         self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)
@@ -78,3 +81,11 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
     def hide_stats(self) -> None:
         if self.__stats_widget is not None:
             self.__stats_widget.setParent(None)
+
+    def set_locations_to_list(self, locations: list[Location]) -> None:
+        for location in locations:
+            self.ui.list_locations.addItem(location.name)
+
+    def set_persons_to_list(self, persons: list[Npc]) -> None:
+        for person in persons:
+            self.ui.list_persons.addItem(person.name)
