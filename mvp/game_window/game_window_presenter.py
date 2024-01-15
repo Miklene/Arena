@@ -10,6 +10,7 @@ import json
 from screens.equipment import Weapon
 from stats_requirements import WeaponStatsRequirmentsComponent
 from components.components_enum import ComponentsEnum
+from world.location import Location
 from world.world import World
 
 class GameWindowPresenter:
@@ -31,16 +32,19 @@ class GameWindowPresenter:
         self.__equipment_visible = False
         self.__stats_visible = False
 
-        world = World()
-        world.current_location = "village_saraevo"
-        self.__view.set_locations_to_list(world.current_location.nearest_locations)
-        self.__view.set_persons_to_list(world.current_location.persons)
+        self.__world = World()
+        self.set_current_location('village_saraevo')
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:
             json_content = json_file.read()
         parsed_json = json.loads(json_content)
         self.__messages = parsed_json['messages']
+
+    def set_current_location(self, location_id: str):
+        self.__world.current_location = location_id
+        self.__view.set_locations_to_list(self.__world.current_location.nearest_locations)
+        self.__view.set_persons_to_list(self.__world.current_location.persons)
 
     def __print_message(self):
         self.__view.clear_variants()
@@ -144,3 +148,6 @@ class GameWindowPresenter:
         #self.__view.insert_text_to_log(variant.find('log_text').text)
         #self.__current_message_id = int(variant.find('next_message_id').text)
         self.__print_message()
+
+    def location_clicked(self, location: Location):
+        self.set_current_location(location.id)

@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QColor
+from PyQt5.QtCore import QModelIndex
 from components.inventory_component import InventoryComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
@@ -24,6 +25,8 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__parent: MainWindowView = parent
 
         self.__variants: dict[QPushButton, int] = {}
+        self.__locations_list: list[Location] = []
+        self.__persons_list: list[Npc] = []
 
         self.__stats_widget = None
         self.__inventory_widget = None
@@ -35,7 +38,9 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)
         self.ui.button_abilities.clicked.connect(self.__presenter.button_abilities_clicked)
         self.ui.button_equipment.clicked.connect(self.__presenter.button_equipment_clicked)
+        self.ui.list_locations.itemClicked.connect(self.location_selected_in_list)
 
+        self.ui.list_locations.setContextMenuPolicy()
 
 
     def add_text_to_log(self, text: str) -> None:
@@ -83,9 +88,20 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
             self.__stats_widget.setParent(None)
 
     def set_locations_to_list(self, locations: list[Location]) -> None:
+        self.__locations_list.clear()
+        self.ui.list_locations.clear()
         for location in locations:
+            self.__locations_list.append(location)
             self.ui.list_locations.addItem(location.name)
 
     def set_persons_to_list(self, persons: list[Npc]) -> None:
+        self.__persons_list.clear()
+        self.ui.list_persons.clear()
         for person in persons:
+            self.__persons_list.append(person.name)
             self.ui.list_persons.addItem(person.name)
+
+    def location_selected_in_list(self, item: QListWidgetItem):
+        index: QModelIndex= self.ui.list_locations.indexFromItem(item)
+        id = index.row()
+        self.__presenter.location_clicked(self.__locations_list[id])

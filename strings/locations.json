@@ -28,7 +28,7 @@
             "id" : "field_saraevo",
             "name" : "Поле Сараево",
             "nearest_locations" : [
-                "forest_cutting_saraevo"
+                "village_saraevo"
 
             ],
             "persons" : [

@@ -7,3 +7,11 @@ class Npc(Creature):
         super().__init__(stats)
         self.__id = id
         self.__name = name
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def id(self):
+        return self.__id
