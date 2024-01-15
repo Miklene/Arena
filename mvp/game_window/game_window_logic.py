@@ -1,9 +1,7 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QColor
 from PyQt5.QtCore import QModelIndex, QPoint
 from PyQt5.QtCore import Qt
 from components.inventory_component import InventoryComponent
-from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
 from mvp.character_stats_widget.character_stats_widget_logic import CharacterStatsWidgetLogic
@@ -15,9 +13,10 @@ from mvp.main_window.main_window_view import MainWindowView
 from world.location import Location
 from world.npc import Npc
 
-class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
 
-    def __init__(self, player: Creature, parent = None):
+class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
+
+    def __init__(self, player: Creature, parent=None):
         super(GameWindowLogic, self).__init__(parent)
         self.ui = Ui_GameWidget()
         self.ui.setupUi(self)
@@ -85,18 +84,15 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
             self.ui.layout_choice_buttons.itemAt(i).widget().deleteLater()
 
     def add_variant(self, variant: str, id: int) -> None:
-        button:QPushButton = QPushButton(variant, self)
+        button: QPushButton = QPushButton(variant, self)
         button.clicked.connect(self.variant_clicked)
         self.__variants[button] = id
         self.ui.layout_choice_buttons.addWidget(button)
 
     def variant_clicked(self):
-        sender = self.sender()
-        id = self.__variants.get(sender)
-        self.__presenter.variant_clicked(id)
+        self.__presenter.variant_clicked(self.__variants.get(self.sender()))
 
     def show_inventory(self, inventory: InventoryComponent) -> None:
-        #self.hide_stats()
         self.__inventory_widget = InventoryWidgetLogic(inventory, self)
         self.ui.widget_container.addWidget(self.__inventory_widget)
 
@@ -105,7 +101,6 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
             self.__inventory_widget.setParent(None)
 
     def show_stats(self, player: Creature) -> None:
-        #self.hide_inventory()
         self.__stats_widget = CharacterStatsWidgetLogic(player, self)
         self.ui.widget_container.addWidget(self.__stats_widget)
 
