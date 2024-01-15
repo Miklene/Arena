@@ -149,5 +149,8 @@ class GameWindowPresenter:
         #self.__current_message_id = int(variant.find('next_message_id').text)
         self.__print_message()
 
-    def location_clicked(self, location: Location):
+    def move_to_location(self, location: Location):
         self.set_current_location(location.id)
+
+    def talk_with_person(self, person):
+        pass

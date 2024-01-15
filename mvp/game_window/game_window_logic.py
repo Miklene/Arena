@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QColor
-from PyQt5.QtCore import QModelIndex
+from PyQt5.QtCore import QModelIndex, QPoint
+from PyQt5.QtCore import Qt
 from components.inventory_component import InventoryComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
@@ -40,8 +41,33 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.ui.button_equipment.clicked.connect(self.__presenter.button_equipment_clicked)
         self.ui.list_locations.itemClicked.connect(self.location_selected_in_list)
 
-        self.ui.list_locations.setContextMenuPolicy()
+        self.ui.list_locations.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.list_locations.customContextMenuRequested.connect(self.locations_custom_menu_requested)
 
+        self.ui.list_persons.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.list_persons.customContextMenuRequested.connect(self.persons_custom_menu_requested)
+
+    def locations_custom_menu_requested(self, pos: QPoint):
+        menu = QMenu(self)
+        move = QAction('Перейти', self)
+        move.triggered.connect(self.move_to_location)
+        menu.addAction(move)
+        menu.exec_(self.ui.list_locations.mapToGlobal(pos))
+
+    def move_to_location(self):
+        row = self.ui.list_locations.selectionModel().currentIndex().row()
+        self.__presenter.move_to_location(self.__locations_list[row])
+
+    def persons_custom_menu_requested(self, pos: QPoint):
+        menu = QMenu(self)
+        talk = QAction('Говорить', self)
+        talk.triggered.connect(self.talk_with_person)
+        menu.addAction(talk)
+        menu.exec_(self.ui.list_persons.mapToGlobal(pos))
+
+    def talk_with_person(self):
+        row = self.ui.list_persons.selectionModel().currentIndex().row()
+        self.__presenter.talk_with_person(self.__persons_list[row])
 
     def add_text_to_log(self, text: str) -> None:
         self.ui.log.appendPlainText(text)
@@ -98,10 +124,10 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass = GameWindowMeta):
         self.__persons_list.clear()
         self.ui.list_persons.clear()
         for person in persons:
-            self.__persons_list.append(person.name)
+            self.__persons_list.append(person)
             self.ui.list_persons.addItem(person.name)
 
     def location_selected_in_list(self, item: QListWidgetItem):
         index: QModelIndex= self.ui.list_locations.indexFromItem(item)
         id = index.row()
-        self.__presenter.location_clicked(self.__locations_list[id])
+        #self.__presenter.location_clicked(self.__locations_list[id])
