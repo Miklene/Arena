@@ -1,0 +1,32 @@
+{
+    "persons" : [
+        {
+            "id" : "father",
+            "name" : "Отец",
+            "physique" : 10,
+            "agility" : 10,
+            "strength" : 10,
+            "inventory" :
+            [
+                {
+                    "file" : "strings/weapons.json",
+                    "id": "lumberjack axe"
+                }
+            ]
+        },
+        {
+            "id" : "mother",
+            "name" : "Мать",
+            "physique" : 8,
+            "agility" : 8,
+            "strength" : 8
+        },
+        {
+            "id" : "village_chief",
+            "name" : "Староста",
+            "physique" : 20,
+            "agility" : 10,
+            "strength" : 15
+        }
+    ]
+}

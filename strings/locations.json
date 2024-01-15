@@ -1,0 +1,49 @@
+{
+    "locations" :
+    [
+        {
+            "id" : "village_saraevo",
+            "name" : "Деревня Сараево",
+            "nearest_locations" : [
+                "forest_cutting_saraevo",
+                "field_saraevo",
+                "village_chief_house"
+            ],
+            "persons" : [
+
+            ]
+
+        },
+        {
+            "id" : "forest_cutting_saraevo",
+            "name" : "Лесосека Сараево",
+            "nearest_locations" : [
+                "village_saraevo"
+            ],
+            "persons" : [
+                "father"
+            ]
+        },
+        {
+            "id" : "field_saraevo",
+            "name" : "Поле Сараево",
+            "nearest_locations" : [
+                "forest_cutting_saraevo"
+
+            ],
+            "persons" : [
+                "mother"
+            ]
+        },
+        {
+            "id" : "village_chief_house",
+            "name" : "Дом старосты",
+            "nearest_locations" : [
+                "village_saraevo"
+            ],
+            "persons" : [
+                "village_chief"
+            ]
+        }
+    ]
+}

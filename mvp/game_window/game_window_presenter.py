@@ -10,6 +10,7 @@ import json
 from screens.equipment import Weapon
 from stats_requirements import WeaponStatsRequirmentsComponent
 from components.components_enum import ComponentsEnum
+from world.world import World
 
 class GameWindowPresenter:
 
@@ -29,6 +30,8 @@ class GameWindowPresenter:
         self.__print_message()
         self.__equipment_visible = False
         self.__stats_visible = False
+
+        world = World()
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:
