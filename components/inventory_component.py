@@ -39,15 +39,20 @@ class InventoryComponent(Component):
       if section.name == type(type).__name__():
         section.showEquipment(output)
 
-  def isEquipmentExist(self, index, type):
+  def isEquipmentExist(self, id, type):
     for section in self._sections:
       if section.name == type(type).__name__():
-        return section.isEquipmentExist(index)
+        return section.isEquipmentExist(id)
 
-  def getEquipmentByIndex(self, index, type):
+  def getEquipmentById(self, id, type):
     for section in self._sections:
       if section.name == type(type).__name__():
-        return section.getEquipmentByIndex(index)
+        return section.getEquipmentById(id)
+
+  def popEquipmentById(self, id, type):
+    for section in self._sections:
+      if section.name == type(type).__name__():
+        return section.popEquipmentById(id)
 
   def recieve(self, message):
     if not isinstance(self, message.recipient):
@@ -66,28 +71,36 @@ class InventorySection:
   def __init__(self, name: str):
     """Инициализация секции инвентарая"""
     self._name = name
-    self._items: list[Equipment] = []
+    self.__items: list[Equipment] = []
 
   def addEquipment(self, equipment: Equipment):
-    self._items.append(equipment)
-    self._items = sorted(self._items, key=sortByPrice)
+    self.__items.append(equipment)
+    self.__items = sorted(self.__items, key=sortByPrice)
 
   def showEquipment(self, output):
-    for equimpent in self._items:
-      equimpent.show(output, self._items.index(equimpent) + 1)
+    for equimpent in self.__items:
+      equimpent.show(output, self.__items.index(equimpent) + 1)
       output.out("\n")
 
-  def isEquipmentExist(self, index):
-    if index < 0 or index > len(self._items):
-      return False
-    return True
+  def isEquipmentExist(self, id):
+    for item in self.__items:
+      if item.id == id:
+        return True
+    return False
 
-  def getEquipmentByIndex(self, index):
-    if self.isEquipmentExist(index):
-      return self._items[index]
+  def getEquipmentById(self, id):
+    for item in self.__items:
+      if item.id == id:
+        return item
+
+  def popEquipmentById(self, id):
+    for item in self.__items:
+      if item.id == id:
+        self.__items.remove(item)
+        return item
 
   def len(self):
-    return len(self._items)
+    return len(self.__items)
 
   @property
   def name(self):

@@ -1,9 +1,10 @@
+from components.components_enum import ComponentsEnum
 from components.inventory_component import InventoryComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from mvp.game_window.game_window_view import GameWindowView
 from world.answer_variant import AnswerVariant
-from world.dialog import Dialog
+from world.dialog import Dialog, DialogAction, DialogActionType
 from world.colors import Colors
 import json
 
@@ -26,6 +27,7 @@ class Npc(Creature):
         dialogs_json = parsed_json['dialogs']
 
         self.__parse_dialogs(dialogs_json)
+        self.__player = None
 
     def __parse_dialogs(self, dialogs_json):
         for d in dialogs_json:
@@ -39,9 +41,16 @@ class Npc(Creature):
                     dialog.variants = variants
                 elif 'next_dialog_id' in d:
                     dialog.next_dialog_id = d['next_dialog_id']
+                if "actions" in d:
+                    for a in d['actions']:
+                        #print(a['type'])
+                        action = DialogAction(DialogActionType[a['type']], a['text'], a['id'])
+                        #print(action.type)
+                        #print(action.type == DialogActionType.REWARD)
                 self.__dialogs.append(dialog)
 
-    def talk(self, view: GameWindowView):
+    def talk(self, view: GameWindowView, player: Creature):
+        self.__player = player
         view.clear_variants()
         view.set_log_text_color(Colors.OPPONENT_COLOR.value[0])
         view.add_text_to_log(self.name + ": ")
@@ -53,7 +62,18 @@ class Npc(Creature):
         if len(variants) == 0:
             if self.__current_dialog.next_dialog_id != "":
                 self.current_dialog_id = self.__current_dialog.next_dialog_id
-                self.talk(view)
+                self.talk(view, self.__player)
+        action = self.__current_dialog.action
+        if action is not None:
+            view.add_text_to_log(action.text + ': ')
+            if action.type == DialogActionType.REWARD:
+                inventory: InventoryComponent = self.getComponent(ComponentsEnum.INVENTORY)
+                if inventory.isEquipmentExist(action.reward_id):
+                    item = inventory.popEquipmentById(action.reward_id)
+                    inventory: InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+                    inventory.addEquipment(item)
+
+
 
 
     def variant_clicked(self, variant_id, view: GameWindowView):
@@ -64,7 +84,7 @@ class Npc(Creature):
                 view.set_log_text_color(Colors.BASIC_COLOR.value[0])
                 view.insert_text_to_log(v.log_text)
                 self.current_dialog_id = v.next_dialog_id
-        self.talk(view)
+        self.talk(view, self.__player)
 
     @property
     def name(self):

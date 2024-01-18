@@ -47,7 +47,8 @@ class World:
                     equipment = self.get_json_file_content(equipment['file'], 'equipment')
                     for item in equipment:
                         if item['type'] == EquipmentType.WEAPON.value[0]:
-                            equipment = Weapon(item['id'], item['name'], item['price'], item['damage'], WeaponStatsRequirmentsComponent(item['strength'], item['agility']))
+                            equipment = Weapon(item['id'], item['name'], item['price'], item['damage'],
+                                               WeaponStatsRequirmentsComponent(item['strength'], item['agility']))
                             inventory.addEquipment(equipment)
             self.__persons[pers_json['id']] = npc
 

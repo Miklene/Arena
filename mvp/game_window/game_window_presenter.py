@@ -159,4 +159,4 @@ class GameWindowPresenter:
 
     def talk_with_person(self, person: Npc):
         self.__current_person = person
-        self.__current_person.talk(self.__view)
+        self.__current_person.talk(self.__view, self.__player)
