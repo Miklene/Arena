@@ -12,6 +12,10 @@
                     "file" : "strings/weapons.json",
                     "id": "lumberjack axe"
                 }
+            ],
+            "dialogs" :
+            [
+
             ]
         },
         {

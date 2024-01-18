@@ -11,6 +11,7 @@ from screens.equipment import Weapon
 from stats_requirements import WeaponStatsRequirmentsComponent
 from components.components_enum import ComponentsEnum
 from world.location import Location
+from world.npc import Npc
 from world.world import World
 
 class GameWindowPresenter:
@@ -149,5 +150,10 @@ class GameWindowPresenter:
         #self.__current_message_id = int(variant.find('next_message_id').text)
         self.__print_message()
 
-    def location_clicked(self, location: Location):
+    def move_to_location(self, location: Location):
+        self.__view.add_text_to_log("Вы идете в ")
+        self.__view.insert_text_to_log(location.name)
         self.set_current_location(location.id)
+
+    def talk_with_person(self, person: Npc):
+        pass
