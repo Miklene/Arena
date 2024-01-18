@@ -151,9 +151,16 @@ class GameWindowPresenter:
         self.__print_message()
 
     def move_to_location(self, location: Location):
+<<<<<<< HEAD
         self.__view.add_text_to_log("Вы идете в ")
         self.__view.insert_text_to_log(location.name)
         self.set_current_location(location.id)
 
     def talk_with_person(self, person: Npc):
         pass
+=======
+        self.set_current_location(location.id)
+
+    def talk_with_person(self, person):
+        pass
+>>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
