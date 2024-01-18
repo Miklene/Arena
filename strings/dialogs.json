@@ -4,14 +4,20 @@
         {
             "id" : "father_first",
             "author_id" : "father",
-            "test" : "Я иду в лес. Ты со мной?",
+            "text" : "Я иду в лес. Ты со мной?",
             "type" : "1",
             "variants" : [
                 {
                     "id":"positive",
                     "text" : "Да",
                     "log_text" : "Да",
-                    "next_dialog" : ""
+                    "next_dialog_id" : ""
+                },
+                {
+                    "id":"negative",
+                    "text" : "Нет, я пришел, чтобы проведать тебя",
+                    "log_text" : "Нет, я пришел, чтобы проведать тебя",
+                    "next_dialog_id" : ""
                 }
             ]
         }

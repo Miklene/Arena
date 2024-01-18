@@ -20,7 +20,7 @@ class Dialog:
         self.__text = text
         self.__type = type
         self.__status = status
-        self.__variants: dict[AnswerVariant, Dialog] = {}
+        self.__variants: list[AnswerVariant] = []
 
     @property
     def text(self) -> str:
