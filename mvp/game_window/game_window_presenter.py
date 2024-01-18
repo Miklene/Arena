@@ -35,6 +35,7 @@ class GameWindowPresenter:
 
         self.__world = World()
         self.set_current_location('village_saraevo')
+        self.__current_person = None
 
     def read_new_message_file(self):
         with open(self.__current_message_file, encoding='utf-8') as json_file:
@@ -135,20 +136,21 @@ class GameWindowPresenter:
             self.__equipment_visible = False
             self.__view.hide_inventory()
 
-    def variant_clicked(self, id: int):
-        variant = self.__current_variatns.get(id)
-        if 'log_author' in variant:
-            self.__view.set_log_text_color(self.SELF_COLOR)
-            self.__view.add_text_to_log(variant['log_author'])
-            self.__view.set_log_text_color(self.BASIC_COLOR)
-        self.__view.insert_text_to_log(variant['log_text'])
-        self.__current_message_id = variant['next_message_id']
-        if self.__current_message_file != variant['next_message_file']:
-            self.__current_message_file = variant['next_message_file']
-            self.read_new_message_file()
+    def variant_clicked(self, id: str):
+        self.__current_person.variant_clicked(id, self.__view)
+        #variant = self.__current_variatns.get(id)
+        #if 'log_author' in variant:
+        #    self.__view.set_log_text_color(self.SELF_COLOR)
+        #    self.__view.add_text_to_log(variant['log_author'])
+        #    self.__view.set_log_text_color(self.BASIC_COLOR)
+        #self.__view.insert_text_to_log(variant['log_text'])
+        #self.__current_message_id = variant['next_message_id']
+        #if self.__current_message_file != variant['next_message_file']:
+        #    self.__current_message_file = variant['next_message_file']
+        #    self.read_new_message_file()
         #self.__view.insert_text_to_log(variant.find('log_text').text)
         #self.__current_message_id = int(variant.find('next_message_id').text)
-        self.__print_message()
+        #self.__print_message()
 
     def move_to_location(self, location: Location):
         self.__view.add_text_to_log("Вы идете в ")
@@ -156,4 +158,5 @@ class GameWindowPresenter:
         self.set_current_location(location.id)
 
     def talk_with_person(self, person: Npc):
-        pass
+        self.__current_person = person
+        self.__current_person.talk(self.__view)

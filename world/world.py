@@ -30,6 +30,7 @@ class World:
         for pers_json in persons_json:
             stats: FighterStatsComponent = FighterStatsComponent(pers_json['physique'], pers_json['strength'], pers_json['agility'])
             npc = Npc(pers_json['id'], pers_json['name'], stats)
+            npc.current_dialog_id = pers_json['start_dialog']
             self.__persons[pers_json['id']] = npc
 
     def parse_locations(self, locations_json):

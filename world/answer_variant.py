@@ -15,9 +15,13 @@ class AnswerVariant:
     def log_text(self) -> str:
         return self.__log_text
 
-    #@property
-    #def next_dialog(self) -> Dialog:
-    #    return self.__next_dialog
+    @property
+    def id(self) -> str:
+        return self.__id
+
+    @property
+    def next_dialog_id(self) -> str:
+        return self.__next_dialog_id
 
     #@next_dialog.setter
     #def next_dialog(self, next: Dialog) -> None:

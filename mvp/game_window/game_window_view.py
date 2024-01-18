@@ -3,7 +3,6 @@ from abc import ABCMeta, abstractmethod
 from components.inventory_component import InventoryComponent
 from entities.creature import Creature
 from world.location import Location
-from world.npc import Npc
 
 
 class GameWindowView(metaclass = ABCMeta):
@@ -24,7 +23,7 @@ class GameWindowView(metaclass = ABCMeta):
         pass
 
     @abstractmethod
-    def add_variant(self, variant: str, id: int) -> None:
+    def add_variant(self, variant: str, id: str) -> None:
         pass
 
     @abstractmethod
@@ -48,5 +47,5 @@ class GameWindowView(metaclass = ABCMeta):
         pass
 
     @abstractmethod
-    def set_persons_to_list(self, persons: list[Npc]) -> None:
+    def set_persons_to_list(self, persons) -> None:
         pass

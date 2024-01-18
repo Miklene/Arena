@@ -8,18 +8,115 @@
             "type" : "1",
             "variants" : [
                 {
-                    "id":"positive",
-                    "text" : "Да",
-                    "log_text" : "Да",
-                    "next_dialog_id" : ""
+                    "id" : "positive",
+                    "text" : "Да.",
+                    "log_text" : "Да.",
+                    "next_dialog_id" : "father_positive_answer"
                 },
                 {
-                    "id":"negative",
-                    "text" : "Нет, я пришел, чтобы проведать тебя",
-                    "log_text" : "Нет, я пришел, чтобы проведать тебя",
+                    "id" : "negative",
+                    "text" : "Нет, я пришел, чтобы проведать тебя.",
+                    "log_text" : "Нет, я пришел, чтобы проведать тебя.",
+                    "next_dialog_id" : "father_negative_answer"
+                },
+                {
+                    "id": "info",
+                    "text" : "Зачем тебе в лес?",
+                    "log_text" : "Зачем тебе в лес?",
+                    "next_dialog_id" : "father_answer_info"
+                }
+            ]
+        },
+        {
+            "id" : "father_answer_info",
+            "author_id" : "father",
+            "text" : "Мне надо нарубить дров для старосты. Поможешь?",
+            "type" : "1",
+            "variants" : [
+                {
+                    "id" : "positive",
+                    "text" : "Да.",
+                    "log_text" : "Да.",
+                    "next_dialog_id" : "father_positive_answer"
+                },
+                {
+                    "id" : "negative",
+                    "text" : "Нет, я пришел, чтобы проведать тебя.",
+                    "log_text" : "Нет, я пришел, чтобы проведать тебя.",
+                    "next_dialog_id" : "father_negative_answer"
+                }
+            ]
+        },
+        {
+            "id" : "father_positive_answer",
+            "author_id" : "father",
+            "text" : "Здорово! Вот держи топор, он тебе понадобится. Не забудь экипировать его.",
+            "type" : "1",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "REWARD",
+                    "file": "strings/weapons.json",
+                    "id": "lumberjack_axe"
+                }
+            ],
+            "variants" : [
+                {
+                    "id" : "positive",
+                    "text" : "Далее.",
+                    "log_text" : "Далее.",
                     "next_dialog_id" : ""
                 }
             ]
+        },
+        {
+            "id" : "father_negative_answer",
+            "author_id" : "father",
+            "text" : "Жаль.",
+            "type" : "0",
+            "next_dialog_id" : "father_sickle_quest"
+        },
+        {
+            "id" : "father_sickle_quest",
+            "author_id" : "father",
+            "text" : "Я заточил для твоей мамы серп. Она сейчас в поле. Занеси ей, пожалуйста.",
+            "type" : "1",
+            "variants" : [
+                {
+                    "id" : "positive",
+                    "text" : "Да, давай его.",
+                    "log_text" : "Да, давай его.",
+                    "next_dialog_id" : "father_sickle_quest_positive"
+                },
+                {
+                    "id" : "negative",
+                    "text" : "Сейчас не могу. Извини.",
+                    "log_text" : "Сейчас не могу. Извини.",
+                    "next_dialog_id" : "father_sickle_quest_negative"
+                }
+            ]
+        },
+        {
+            "id" : "father_sickle_quest_positive",
+            "author_id" : "father",
+            "text" : "Вот.",
+            "type" : "1",
+            "actions": [
+                {
+                    "text": "Вы получили ",
+                    "type": "REWARD",
+                    "file": "strings/weapons.json",
+                    "id": "sickle"
+                }
+            ],
+            "next_dialog_id" : ""
+        },
+        {
+            "id" : "father_sickle_quest_negative",
+            "author_id" : "father",
+            "text" : "Что ж, тогда отдам его сам.",
+            "type" : "1",
+            "next_dialog_id" : ""
         }
     ]
 }

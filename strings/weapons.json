@@ -1,7 +1,7 @@
 {
     "weapons":[
         {
-            "id": "lumberjack axe",
+            "id": "lumberjack_axe",
             "name": "Топор дровосека",
             "color": 8421504,
             "type": "TWO_HANDED",

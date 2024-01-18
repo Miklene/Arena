@@ -21,6 +21,7 @@ class Dialog:
         self.__type = type
         self.__status = status
         self.__variants: list[AnswerVariant] = []
+        self.__next_dialog_id = ""
 
     @property
     def text(self) -> str:
@@ -33,3 +34,15 @@ class Dialog:
     @variants.setter
     def variants(self, variants: list[AnswerVariant]) -> None:
         self.__variants = variants
+
+    @property
+    def id(self) -> str:
+        return self.__id
+
+    @property
+    def next_dialog_id(self) -> str:
+        return self.__next_dialog_id
+
+    @next_dialog_id.setter
+    def next_dialog_id(self, id: str) -> None:
+        self.__next_dialog_id = id

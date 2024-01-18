@@ -24,7 +24,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
 
         self.__parent: MainWindowView = parent
 
-        self.__variants: dict[QPushButton, int] = {}
+        self.__variants: dict[QPushButton, str] = {}
         self.__locations_list: list[Location] = []
         self.__persons_list: list[Npc] = []
 
@@ -71,9 +71,10 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
     def add_text_to_log(self, text: str) -> None:
         self.ui.log.appendPlainText(text)
 
-    def set_log_text_color(self, text_color) -> None :
+    def set_log_text_color(self, text_color: int) -> None :
+        color = QColor(text_color)
         text_char_format = self.ui.log.currentCharFormat()
-        text_char_format.setForeground(text_color)
+        text_char_format.setForeground(color)
         self.ui.log.setCurrentCharFormat(text_char_format)
 
     def insert_text_to_log(self, text: str) -> None:
@@ -83,7 +84,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
         for i in reversed(range(self.ui.layout_choice_buttons.count())):
             self.ui.layout_choice_buttons.itemAt(i).widget().deleteLater()
 
-    def add_variant(self, variant: str, id: int) -> None:
+    def add_variant(self, variant: str, id: str) -> None:
         button: QPushButton = QPushButton(variant, self)
         button.clicked.connect(self.variant_clicked)
         self.__variants[button] = id

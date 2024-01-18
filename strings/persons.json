@@ -13,24 +13,23 @@
                     "id": "lumberjack axe"
                 }
             ],
-            "dialogs" :
-            [
-
-            ]
+            "start_dialog" : "father_first"
         },
         {
             "id" : "mother",
             "name" : "Мать",
             "physique" : 8,
             "agility" : 8,
-            "strength" : 8
+            "strength" : 8,
+            "start_dialog" : "father_first"
         },
         {
             "id" : "village_chief",
             "name" : "Староста",
             "physique" : 20,
             "agility" : 10,
-            "strength" : 15
+            "strength" : 15,
+            "start_dialog" : "father_first"
         }
     ]
 }
