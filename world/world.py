@@ -1,4 +1,8 @@
+from components.components_enum import ComponentsEnum
+from components.inventory_component import InventoryComponent
 from components.stats_component import FighterStatsComponent
+from screens.equipment import EquipmentType, Weapon
+from stats_requirements import WeaponStatsRequirmentsComponent
 from world.location import Location
 import json
 
@@ -13,6 +17,12 @@ class World:
         self.__persons_file = "strings/persons.json"
         self.read_persons(self.__persons_file)
         self.read_locations(self.__locations_file)
+
+    def get_json_file_content(self, file, root):
+        with open(file, encoding='utf-8') as json_file:
+            json_content = json_file.read()
+        parsed_json = json.loads(json_content)
+        return parsed_json[root]
 
     def read_persons(self, file):
         with open(file, encoding='utf-8') as json_file:
@@ -31,6 +41,14 @@ class World:
             stats: FighterStatsComponent = FighterStatsComponent(pers_json['physique'], pers_json['strength'], pers_json['agility'])
             npc = Npc(pers_json['id'], pers_json['name'], stats)
             npc.current_dialog_id = pers_json['start_dialog']
+            if 'inventory' in pers_json:
+                inventory: InventoryComponent = npc.getComponent(ComponentsEnum.INVENTORY)
+                for equipment in pers_json['inventory']:
+                    equipment = self.get_json_file_content(equipment['file'], 'equipment')
+                    for item in equipment:
+                        if item['type'] == EquipmentType.WEAPON.value[0]:
+                            equipment = Weapon(item['id'], item['name'], item['price'], item['damage'], WeaponStatsRequirmentsComponent(item['strength'], item['agility']))
+                            inventory.addEquipment(equipment)
             self.__persons[pers_json['id']] = npc
 
     def parse_locations(self, locations_json):

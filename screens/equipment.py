@@ -1,11 +1,19 @@
+from enum import Enum
 from entities.entity import Entity
 from abc import abstractmethod
 
 from stats_requirements import WeaponStatsRequirmentsComponent
 
+
+class EquipmentType(Enum):
+  WEAPON = 0,
+  ARMOR = 1,
+
+
 class Equipment(Entity):
-  def __init__(self, name, price, stats_requirements):
-    self._id = 0
+  def __init__(self, type: EquipmentType, id,  name, price, stats_requirements):
+    self._id = id
+    self.__type = type
     self._name = name
     self._price = price
     self._stats_requierments = stats_requirements
@@ -36,8 +44,8 @@ class Equipment(Entity):
 
 
 class Weapon(Equipment):
-  def __init__(self, name, price, damage, stats_requirements: WeaponStatsRequirmentsComponent):
-    super().__init__(name, price, stats_requirements)
+  def __init__(self, id,  name, price, damage, stats_requirements: WeaponStatsRequirmentsComponent):
+    super().__init__(EquipmentType.WEAPON, id, name, price, stats_requirements)
     self._damage = damage
 
   def equip(self, entity, output):
@@ -62,8 +70,8 @@ class Weapon(Equipment):
     return self.name
 
 class Armor(Equipment):
-  def __init__(self, name, price, armor, stats_requirements):
-    super().__init__(name, price, stats_requirements)
+  def __init__(self, id, name, price, armor, stats_requirements):
+    super().__init__(EquipmentType.ARMOR, id,  name, price, stats_requirements)
     self._armor = armor
 
   def equip(self, entity, output):

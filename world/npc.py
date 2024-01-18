@@ -1,3 +1,4 @@
+from components.inventory_component import InventoryComponent
 from components.stats_component import FighterStatsComponent
 from entities.creature import Creature
 from mvp.game_window.game_window_view import GameWindowView
@@ -15,6 +16,8 @@ class Npc(Creature):
         self.__dialogs: list [Dialog] = []
         self.__current_dialog_id: str = ""
         self.__current_dialog = None
+
+        self.addComponent(InventoryComponent())
 
         self.__dialogs_file = "strings/dialogs.json"
         with open(self.__dialogs_file, encoding='utf-8') as json_file:

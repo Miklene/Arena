@@ -1,10 +1,10 @@
 {
-    "weapons":[
+    "equipment":[
         {
             "id": "lumberjack_axe",
             "name": "Топор дровосека",
             "color": 8421504,
-            "type": "TWO_HANDED",
+            "type": 0,
             "damage": 10,
             "price": 3,
             "strength": 5,
@@ -14,7 +14,7 @@
             "id": "sickle",
             "name": "Серп",
             "color": 8421504,
-            "type": "ONE_HANDED",
+            "type": 0,
             "damage": 6,
             "price": 2,
             "strength": 5,
