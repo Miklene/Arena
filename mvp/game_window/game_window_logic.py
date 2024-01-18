@@ -1,11 +1,6 @@
 from PyQt5.QtWidgets import *
-<<<<<<< HEAD
 from PyQt5.QtGui import QColor
 from PyQt5.QtCore import QModelIndex, Qt, QPoint
-=======
-from PyQt5.QtCore import QModelIndex, QPoint
-from PyQt5.QtCore import Qt
->>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
 from components.inventory_component import InventoryComponent
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
@@ -46,7 +41,6 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
         self.ui.list_locations.itemClicked.connect(self.location_selected_in_list)
 
         self.ui.list_locations.setContextMenuPolicy(Qt.CustomContextMenu)
-<<<<<<< HEAD
         self.ui.list_locations.customContextMenuRequested.connect(self.locations_menu_requested)
 
         self.ui.list_persons.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -55,46 +49,23 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
     def locations_menu_requested(self, pos: QPoint):
         menu = QMenu(self)
         move = QAction("Перейти", self)
-=======
-        self.ui.list_locations.customContextMenuRequested.connect(self.locations_custom_menu_requested)
-
-        self.ui.list_persons.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.ui.list_persons.customContextMenuRequested.connect(self.persons_custom_menu_requested)
-
-    def locations_custom_menu_requested(self, pos: QPoint):
-        menu = QMenu(self)
-        move = QAction('Перейти', self)
->>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
         move.triggered.connect(self.move_to_location)
         menu.addAction(move)
         menu.exec_(self.ui.list_locations.mapToGlobal(pos))
 
     def move_to_location(self):
-<<<<<<< HEAD
         row = self.ui.list_locations.currentIndex().row()
         self.__presenter.move_to_location(self.__locations_list[row])
 
     def persons_menu_requested(self, pos: QPoint):
         menu = QMenu(self)
         talk = QAction("Говорить", self)
-=======
-        row = self.ui.list_locations.selectionModel().currentIndex().row()
-        self.__presenter.move_to_location(self.__locations_list[row])
-
-    def persons_custom_menu_requested(self, pos: QPoint):
-        menu = QMenu(self)
-        talk = QAction('Говорить', self)
->>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
         talk.triggered.connect(self.talk_with_person)
         menu.addAction(talk)
         menu.exec_(self.ui.list_persons.mapToGlobal(pos))
 
     def talk_with_person(self):
-<<<<<<< HEAD
         row = self.ui.list_persons.currentIndex().row()
-=======
-        row = self.ui.list_persons.selectionModel().currentIndex().row()
->>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
         self.__presenter.talk_with_person(self.__persons_list[row])
 
     def add_text_to_log(self, text: str) -> None:
@@ -153,9 +124,5 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
 
     def location_selected_in_list(self, item: QListWidgetItem):
         index: QModelIndex= self.ui.list_locations.indexFromItem(item)
-<<<<<<< HEAD
         #id = index.row()
-=======
-        id = index.row()
->>>>>>> d6a8104500dadcdd058fd3b8745ce852dba376b6
         #self.__presenter.location_clicked(self.__locations_list[id])

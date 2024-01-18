@@ -1,0 +1,19 @@
+{
+    "dialogs":
+    [
+        {
+            "id" : "father_first",
+            "author_id" : "father",
+            "test" : "Я иду в лес. Ты со мной?",
+            "type" : "1",
+            "variants" : [
+                {
+                    "id":"positive",
+                    "text" : "Да",
+                    "log_text" : "Да",
+                    "next_dialog" : ""
+                }
+            ]
+        }
+    ]
+}
