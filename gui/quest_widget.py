@@ -16,7 +16,7 @@ class Ui_QuestWidget(object):
         QuestWidget.setObjectName("QuestWidget")
         QuestWidget.resize(400, 300)
         self.verticalLayout = QtWidgets.QVBoxLayout(QuestWidget)
-        self.verticalLayout.setContentsMargins(5, 5, 5, -1)
+        self.verticalLayout.setContentsMargins(5, 5, 5, 5)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label_name = QtWidgets.QLabel(QuestWidget)
         self.label_name.setObjectName("label_name")
