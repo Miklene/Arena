@@ -1,5 +1,6 @@
 from contextlib import suppress
 from components.inventory_component import InventoryComponent
+from components.journal_component import JournalComponent
 from components.parameters_component import FighterParametersComponent
 from components.stats_component import FighterStatsComponent, StatsComponent
 from entities.creature import Creature
@@ -30,8 +31,10 @@ class GameWindowPresenter:
 
         self.read_new_message_file()
         self.__print_message()
+
         self.__equipment_visible = False
         self.__stats_visible = False
+        self.__journal_visible = False
 
         self.__world = World()
         self.set_current_location('village_saraevo')
@@ -117,6 +120,8 @@ class GameWindowPresenter:
             self.__stats_visible = True
             self.__equipment_visible = False
             self.__view.hide_inventory()
+            self.__journal_visible = False
+            self.__view.hide_journal()
             self.__view.show_stats(self.__player)
         else:
             self.__stats_visible = False
@@ -130,27 +135,29 @@ class GameWindowPresenter:
             self.__equipment_visible = True
             self.__stats_visible = False
             self.__view.hide_stats()
+            self.__journal_visible = False
+            self.__view.hide_journal()
             inventory:InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
             self.__view.show_inventory(inventory)
         else:
             self.__equipment_visible = False
             self.__view.hide_inventory()
 
+    def button_journal_clicked(self):
+        if not self.__journal_visible:
+            self.__journal_visible = True
+            self.__stats_visible = False
+            self.__view.hide_stats()
+            self.__equipment_visible = False
+            self.__view.hide_inventory()
+            journal: JournalComponent = self.__player.getComponent(ComponentsEnum.JOURNAL)
+            self.__view.show_journal(journal)
+        else:
+            self.__journal_visible = False
+            self.__view.hide_journal()
+
     def variant_clicked(self, id: str):
         self.__current_person.variant_clicked(id, self.__view)
-        #variant = self.__current_variatns.get(id)
-        #if 'log_author' in variant:
-        #    self.__view.set_log_text_color(self.SELF_COLOR)
-        #    self.__view.add_text_to_log(variant['log_author'])
-        #    self.__view.set_log_text_color(self.BASIC_COLOR)
-        #self.__view.insert_text_to_log(variant['log_text'])
-        #self.__current_message_id = variant['next_message_id']
-        #if self.__current_message_file != variant['next_message_file']:
-        #    self.__current_message_file = variant['next_message_file']
-        #    self.read_new_message_file()
-        #self.__view.insert_text_to_log(variant.find('log_text').text)
-        #self.__current_message_id = int(variant.find('next_message_id').text)
-        #self.__print_message()
 
     def move_to_location(self, location: Location):
         self.__view.add_text_to_log("Вы идете в ")

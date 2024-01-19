@@ -1,3 +1,4 @@
+from components.journal_component import JournalComponent
 from mvp.main_menu.main_menu_view import MainMenuView
 from components.level_component import *
 from components.stats_component import *
@@ -20,6 +21,7 @@ class MainMenuPresenter:
         #player.addComponent(NameComponent(self.__player_name))
         player.addComponent(FighterParametersComponent(stats))
         player.addComponent(InventoryComponent())
+        player.addComponent(JournalComponent())
         #nventory: InventoryComponent = player.getComponent(ComponentsEnum.INVENTORY)
         #inventory.addEquipment(Weapon("Серп","sickle", 2, 6, WeaponStatsRequirmentsComponent(4,4)))
         self.__view.start_new_game(player)

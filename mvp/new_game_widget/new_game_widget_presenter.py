@@ -1,3 +1,4 @@
+from components.journal_component import JournalComponent
 from components.level_component import *
 from components.stats_component import *
 from components.name_component import *
@@ -21,6 +22,7 @@ class NewGameWidgetPresenter:
             player.addComponent(NameComponent(self.__player_name))
             player.addComponent(FighterParametersComponent(stats))
             player.addComponent(InventoryComponent())
+            player.addComponent(JournalComponent())
             inventory: InventoryComponent = player.getComponent(ComponentsEnum.INVENTORY)
             inventory.addEquipment(Weapon("Серп", 2, 6, WeaponStatsRequirmentsComponent(4,4)))
             self.__view.start_new_game(player)

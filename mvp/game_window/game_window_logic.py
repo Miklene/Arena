@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QColor
 from PyQt5.QtCore import QModelIndex, Qt, QPoint
 from components.inventory_component import InventoryComponent
+from components.journal_component import JournalComponent
 from entities.creature import Creature
 from gui.game_widget import Ui_GameWidget
 from mvp.character_stats_widget.character_stats_widget_logic import CharacterStatsWidgetLogic
@@ -9,6 +10,7 @@ from mvp.game_window.game_window_meta import GameWindowMeta
 from mvp.game_window.game_window_presenter import GameWindowPresenter
 from mvp.game_window.game_window_view import GameWindowView
 from mvp.inventory_widget.inventory_widget_logic import InventoryWidgetLogic
+from mvp.journal_widget.journal_widget_logic import JournalWidgetLogic
 from mvp.main_window.main_window_view import MainWindowView
 from world.location import Location
 from world.npc import Npc
@@ -30,6 +32,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
 
         self.__stats_widget = None
         self.__inventory_widget = None
+        self.__journal_widget = None
 
         self.ui.log.setReadOnly(True)
 
@@ -38,6 +41,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
         self.ui.button_character.clicked.connect(self.__presenter.button_stats_clicked)
         self.ui.button_abilities.clicked.connect(self.__presenter.button_abilities_clicked)
         self.ui.button_equipment.clicked.connect(self.__presenter.button_equipment_clicked)
+        self.ui.button_journal.clicked.connect(self.__presenter.button_journal_clicked)
         self.ui.list_locations.itemClicked.connect(self.location_selected_in_list)
 
         self.ui.list_locations.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -108,6 +112,14 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
     def hide_stats(self) -> None:
         if self.__stats_widget is not None:
             self.__stats_widget.setParent(None)
+
+    def show_journal(self, journal: JournalComponent) -> None:
+        self.__journal_widget = JournalWidgetLogic(journal, self)
+        self.ui.widget_container.addWidget(self.__journal_widget)
+
+    def hide_journal(self) -> None:
+        if self.__journal_widget is not None:
+            self.__journal_widget.setParent(None)
 
     def set_locations_to_list(self, locations: list[Location]) -> None:
         self.__locations_list.clear()

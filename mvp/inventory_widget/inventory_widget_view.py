@@ -7,5 +7,6 @@ class InventoryWidgetView(metaclass = ABCMeta):
     def close_widget(self):
         pass
 
+    @abstractmethod
     def add_item_to_tab(self, tab_name: str, widget: QWidget):
         pass

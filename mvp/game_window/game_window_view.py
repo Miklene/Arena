@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 from components.inventory_component import InventoryComponent
+from components.journal_component import JournalComponent
 from entities.creature import Creature
 from world.location import Location
 
@@ -40,6 +41,14 @@ class GameWindowView(metaclass = ABCMeta):
 
     @abstractmethod
     def hide_stats(self) -> None:
+        pass
+
+    @abstractmethod
+    def show_journal(self, journal: JournalComponent) -> None:
+        pass
+
+    @abstractmethod
+    def hide_journal(self) -> None:
         pass
 
     @abstractmethod

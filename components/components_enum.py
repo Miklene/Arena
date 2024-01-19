@@ -10,6 +10,7 @@ class ComponentsEnum(Enum):
   RACE = 6
   ABILITY = 7
   NAME = 8
+  JOURNAL = 9
 
   PHYSIQUE = 20
   STRENGTH = 21
