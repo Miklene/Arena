@@ -35,7 +35,7 @@ class GameWindowLogic(QWidget, GameWindowView, metaclass=GameWindowMeta):
 
         self.__presenter: GameWindowPresenter = GameWindowPresenter(view=self, player=player)
 
-        self.ui.button_stats.clicked.connect(self.__presenter.button_stats_clicked)
+        self.ui.button_character.clicked.connect(self.__presenter.button_stats_clicked)
         self.ui.button_abilities.clicked.connect(self.__presenter.button_abilities_clicked)
         self.ui.button_equipment.clicked.connect(self.__presenter.button_equipment_clicked)
         self.ui.list_locations.itemClicked.connect(self.location_selected_in_list)

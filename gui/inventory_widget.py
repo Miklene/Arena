@@ -16,8 +16,14 @@ class Ui_InventoryWidget(object):
         InventoryWidget.setObjectName("InventoryWidget")
         InventoryWidget.resize(436, 449)
         self.verticalLayout = QtWidgets.QVBoxLayout(InventoryWidget)
+        self.verticalLayout.setContentsMargins(5, 0, 5, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.tab_widget_weapon = QtWidgets.QTabWidget(InventoryWidget)
+        self.groupBox_inventory = QtWidgets.QGroupBox(InventoryWidget)
+        self.groupBox_inventory.setObjectName("groupBox_inventory")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_inventory)
+        self.verticalLayout_2.setContentsMargins(5, 5, 5, 5)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.tab_widget_weapon = QtWidgets.QTabWidget(self.groupBox_inventory)
         self.tab_widget_weapon.setObjectName("tab_widget_weapon")
         self.tab_weapon = QtWidgets.QWidget()
         self.tab_weapon.setObjectName("tab_weapon")
@@ -43,7 +49,8 @@ class Ui_InventoryWidget(object):
         self.list_widget_food.setObjectName("list_widget_food")
         self.verticalLayout_5.addWidget(self.list_widget_food)
         self.tab_widget_weapon.addTab(self.tab_food, "")
-        self.verticalLayout.addWidget(self.tab_widget_weapon)
+        self.verticalLayout_2.addWidget(self.tab_widget_weapon)
+        self.verticalLayout.addWidget(self.groupBox_inventory)
 
         self.retranslateUi(InventoryWidget)
         self.tab_widget_weapon.setCurrentIndex(0)
@@ -52,6 +59,7 @@ class Ui_InventoryWidget(object):
     def retranslateUi(self, InventoryWidget):
         _translate = QtCore.QCoreApplication.translate
         InventoryWidget.setWindowTitle(_translate("InventoryWidget", "Инвентарь"))
+        self.groupBox_inventory.setTitle(_translate("InventoryWidget", "Инвентарь"))
         self.tab_widget_weapon.setTabText(self.tab_widget_weapon.indexOf(self.tab_weapon), _translate("InventoryWidget", "Оружие"))
         self.tab_widget_weapon.setTabText(self.tab_widget_weapon.indexOf(self.tab_armor), _translate("InventoryWidget", "Броня"))
         self.tab_widget_weapon.setTabText(self.tab_widget_weapon.indexOf(self.tab_food), _translate("InventoryWidget", "Еда"))
