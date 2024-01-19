@@ -1,0 +1,17 @@
+{
+    "quests" : [
+        {
+            "id" : "help_father_in_the_forest",
+            "name" : "Помочь отцу в лесу",
+            "description" : "Отец попросил меня сходить с ним в лес.",
+            "reward_exp" : 50
+        },
+        {
+            "id" : "take_the_sickle_to_mother",
+            "name" : "Отнести матери среп",
+            "description" : "Отец заточил мамин серп. Надо забрать его у отца и отнести матери.",
+            "reward_exp" : 25
+        }
+
+    ]
+}
