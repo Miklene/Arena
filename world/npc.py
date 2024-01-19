@@ -45,6 +45,7 @@ class Npc(Creature):
                     for a in d['actions']:
                         #print(a['type'])
                         action = DialogAction(DialogActionType[a['type']], a['text'], a['id'])
+                        dialog.action = action
                         #print(action.type)
                         #print(action.type == DialogActionType.REWARD)
                 self.__dialogs.append(dialog)
@@ -70,8 +71,9 @@ class Npc(Creature):
                 inventory: InventoryComponent = self.getComponent(ComponentsEnum.INVENTORY)
                 if inventory.isEquipmentExist(action.reward_id):
                     item = inventory.popEquipmentById(action.reward_id)
-                    inventory: InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
-                    inventory.addEquipment(item)
+                    view.insert_text_to_log(item.name)
+                    player_inventory: InventoryComponent = self.__player.getComponent(ComponentsEnum.INVENTORY)
+                    player_inventory.addEquipment(item)
 
 
 

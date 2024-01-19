@@ -39,19 +39,21 @@ class InventoryComponent(Component):
       if section.name == type(type).__name__():
         section.showEquipment(output)
 
-  def isEquipmentExist(self, id, type):
+  def isEquipmentExist(self, id):#, type):
     for section in self._sections:
-      if section.name == type(type).__name__():
-        return section.isEquipmentExist(id)
+      #if section.name == type(type).__name__():
+      if section.isEquipmentExist(id):
+        return True
+    return False
 
   def getEquipmentById(self, id, type):
     for section in self._sections:
       if section.name == type(type).__name__():
         return section.getEquipmentById(id)
 
-  def popEquipmentById(self, id, type):
+  def popEquipmentById(self, id):
     for section in self._sections:
-      if section.name == type(type).__name__():
+      if section.isEquipmentExist(id):
         return section.popEquipmentById(id)
 
   def recieve(self, message):
@@ -87,6 +89,10 @@ class InventorySection:
       if item.id == id:
         return True
     return False
+
+  def getEquipmentByIndex(self, index: int):
+    if index >= 0 and index < self.len():
+      return self.__items[index]
 
   def getEquipmentById(self, id):
     for item in self.__items:

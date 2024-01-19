@@ -21,7 +21,7 @@ class DialogAction:
 
     @property
     def reward_id(self) -> str:
-        return self.reward_id
+        return self.__reward_id
 
 
 
