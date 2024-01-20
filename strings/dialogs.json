@@ -60,6 +60,7 @@
                     "id": "lumberjack_axe"
                 }
             ],
+            "quest_id": "help_father_in_the_forest",
             "variants" : [
                 {
                     "id" : "positive",

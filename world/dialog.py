@@ -1,9 +1,11 @@
 from enum import Enum
 from world.answer_variant import AnswerVariant
+from world.quest import Quest
 
 
 class DialogActionType(Enum):
     REWARD = "REWARD",
+
 
 class DialogAction:
     def __init__(self, type: DialogActionType, text:str, reward_id: str):
@@ -22,7 +24,6 @@ class DialogAction:
     @property
     def reward_id(self) -> str:
         return self.__reward_id
-
 
 
 class DialogStatus(Enum):
@@ -45,6 +46,7 @@ class Dialog:
         self.__variants: list[AnswerVariant] = []
         self.__action = None
         self.__next_dialog_id = ""
+        self.__quest: Quest = None
 
     @property
     def text(self) -> str:
@@ -77,3 +79,11 @@ class Dialog:
     @action.setter
     def action(self, action: DialogAction) -> None:
         self.__action = action
+
+    @property
+    def quest(self) -> Quest:
+        return self.__quest
+
+    @quest.setter
+    def quest(self, quest: Quest):
+        self.__quest = quest
