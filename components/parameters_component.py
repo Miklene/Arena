@@ -22,7 +22,7 @@ class ParametersComponent(Component):
   def __init__(self, stats: StatsComponent):
     super().__init__(ComponentsEnum.PARAMETERS)
 
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_CHARACTER_INFO:
@@ -63,7 +63,7 @@ class FighterParametersComponent(ParametersComponent):
     self._stats = stats
     self.update()
 
-  def recieve(self, message: Message):
+  def receive(self, message: Message):
     super().recieve(message)
     if message.code == MessageCode.GET_HP:
       message.addAnswer(ComponentsEnum.HP, self._hp)

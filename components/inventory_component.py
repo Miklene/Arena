@@ -56,7 +56,7 @@ class InventoryComponent(Component):
       if section.isEquipmentExist(id):
         return section.popEquipmentById(id)
 
-  def recieve(self, message):
+  def receive(self, message):
     if not isinstance(self, message.recipient):
       return
 

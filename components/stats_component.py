@@ -45,7 +45,7 @@ class StatsComponent(Component, StatsObservable):
   def getDescription(self):
     pass
 
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_CHARACTER_INFO:

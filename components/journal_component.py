@@ -12,6 +12,10 @@ class JournalComponent(Component):
     def add_quest(self, quest: Quest):
         self.__quests.append(quest)
 
-    def recieve(self, message):
+    def receive(self, message):
         if not isinstance(self, message.recipient):
             return
+
+    @property
+    def quests(self):
+        return self.__quests

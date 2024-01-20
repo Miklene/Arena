@@ -12,7 +12,7 @@ class NameComponent(Component):
     super().__init__(ComponentsEnum.NAME)
     self._name = name
 
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_CHARACTER_INFO:

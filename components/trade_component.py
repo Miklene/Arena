@@ -43,7 +43,7 @@ class TradeComponent(Component):
       
     return self._inventory.equipment
     
-  def recieve(self, message):
+  def receive(self, message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_MONEY:

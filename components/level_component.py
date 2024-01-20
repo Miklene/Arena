@@ -22,7 +22,7 @@ class LevelComponent(Component):
     self._point_per_level = points_per_level
     self._current_level = initial_level
 
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_CHARACTER_INFO:

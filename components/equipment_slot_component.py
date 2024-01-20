@@ -7,7 +7,7 @@ class EquipmentSlot(Component):
     self._name = name
     self._equipment = equipment
   
-  def recieve(self, message):
+  def receive(self, message):
     if not isinstance(self, message.recipient):
       return
     if message.code == MessageCode.SHOW_CHARACTER_EQUIPMENT:

@@ -8,7 +8,7 @@ class RaceComponent(Component):
     super().__init__(ComponentsEnum.RACE)
     self._name:str = name
   
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if message._code == MessageCode.SHOW_CHARACTER_INFO:
       message.addAnswer(self._id, str(self))
 
@@ -31,7 +31,7 @@ class Elf(RaceComponent):
   def __init__(self):
     super().__init__("Эльф")
 
-  def recieve(self, message:Message):
+  def receive(self, message:Message):
     if message._code == MessageCode.SHOW_CHARACTER_INFO:
       message.addAnswer(self._id, str(self))
 

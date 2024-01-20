@@ -8,15 +8,18 @@ from mvp.journal_widget.journal_widget_presenter import JournalWidgetPresenter
 from mvp.journal_widget.journal_widget_view import JournalWidgetView
 
 
-class JournalWidgetLogic(QWidget, JournalWidgetView, metaclass = GameWindowMeta):
+class JournalWidgetLogic(QWidget, JournalWidgetView, metaclass=GameWindowMeta):
 
-    def __init__(self, journal: JournalComponent, parent = None):
+    def __init__(self, journal: JournalComponent, parent=None):
         super(JournalWidgetLogic, self).__init__(parent)
 
         self.ui = Ui_JournalWidget()
         self.ui.setupUi(self)
         self.show()
 
-        self.__parent:GameWindowView = parent
+        self.__parent: GameWindowView = parent
         self.__journal = journal
         self.__presenter = JournalWidgetPresenter(self, self.__journal)
+
+    def add_quest_to_list(self, quest):
+        self.ui.listWidget.addItem(quest.name)
